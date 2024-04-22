@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>SQL 변환기</title>
+  </head>
+  <body data-theme="light">
+    <header class="header"><p>SQL 변환기</p></header>
+    <main class="main">
+      <details class="toggle" open>
+        <summary class="toggle-title">변환할 SQL, 테이블, 컬럼 입력</summary>
+        <div class="toggle-contents">
+          <li>변환할 SQL</li>
+          <input type="file" multiple />
+          <textarea class="sql-area" placeholder="sql을 입력해주세요" cols="30" rows="10"></textarea>
+          <li>변환활 테이블, 컬럼</li>
+          <input type="file" />
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th colspan="2">변환 전</th>
+                <th colspan="2">변환 후</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th>테이블</th>
+                <th>컬럼</th>
+                <th>테이블</th>
+                <th>컬럼</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>1</th>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+              </tr>
+              <tr>
+                <th>2</th>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+      <details class="toggle" open>
+        <summary class="toggle-title">변환</summary>
+        <div class="toggle-contents">
+          <button>변환</button>
+        </div>
+      </details>
+      <details class="toggle" open>
+        <summary class="toggle-title">변환된 SQL 출력</summary>
+        <div class="toggle-contents">
+          <textarea class="sql-area" placeholder="sql을 입력해주세요" cols="30" rows="10"></textarea>
+          <button>다운로드</button>
+        </div>
+      </details>
+    </main>
+    <footer class="footer">
+      <div class="footer-content">
+        <p class="footer-name">neromalion</p>
+        <div class="footer-email">
+          <span>contact: </span>
+          <address>neromalion@gmail.com</address>
+          <span class="mdi--clipboard-outline"></span>
+        </div>
+        <div class="footer-link">
+          <a href="https://github.com/neromalion"><span class="bi--github"></span></a>
+        </div>
+      </div>
+    </footer>
+    <script src="./script.js"></script>
+  </body>
+</html>

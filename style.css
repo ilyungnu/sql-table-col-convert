@@ -55,14 +55,27 @@ button {
 }
 
 textarea {
+  padding: 10px;
   resize: none;
-  padding: 8px;
+}
+textarea:focus {
+  outline: none;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+}
+button:active {
+  filter: invert(10%);
 }
 
 /************class************/
-.toggle,
+.section,
 .footer-content {
-  width: 800px;
+  width: 640px;
   margin: 0 auto;
 }
 
@@ -82,14 +95,29 @@ textarea {
   flex-direction: column;
   gap: 24px;
 }
-.toggle-title {
+.section-title {
   font-weight: bold;
+  font-size: 24px;
 }
-.toggle-contents {
+.section-contents {
   display: flex;
   flex-direction: column;
   padding: 12px;
   gap: 12px;
+}
+
+.sql-area {
+  height: 100px;
+  border-radius: 4px;
+  background-color: #1f1f1f;
+  color: #eeeeee;
+}
+
+.convert-table input {
+  width: 100%;
+}
+.convert-table input:focus {
+  outline: none;
 }
 
 /*footer*/
@@ -105,6 +133,7 @@ textarea {
 }
 .footer-email {
   display: flex;
+  align-items: end;
   gap: 4px;
 }
 .footer-email address {

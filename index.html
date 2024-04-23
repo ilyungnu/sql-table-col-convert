@@ -7,17 +7,26 @@
     <title>SQL 변환기</title>
   </head>
   <body data-theme="light">
-    <header class="header"><p>SQL 변환기</p></header>
+    <header class="header">
+      <!--header-->
+      <p>SQL 변환기</p>
+    </header>
+
     <main class="main">
-      <details class="toggle" open>
-        <summary class="toggle-title">변환할 SQL, 테이블, 컬럼 입력</summary>
-        <div class="toggle-contents">
-          <li>변환할 SQL</li>
-          <input type="file" multiple />
-          <textarea class="sql-area" placeholder="sql을 입력해주세요" cols="30" rows="10"></textarea>
-          <li>변환활 테이블, 컬럼</li>
-          <input type="file" />
-          <table>
+      <!--main-->
+      <section class="section">
+        <!--변환할 SQL, 테이블, 컬럼 입력-->
+        <h1 class="section-title">변환할 SQL, 테이블, 컬럼 입력</h1>
+        <div class="section-contents">
+          <!--SQL 입력-->
+          <b>SQL</b>
+          <input id="sqlFileInput" type="file" accept=".sql" multiple />
+          <textarea id="sqlBefore" class="sql-area" placeholder="sql을 입력해주세요"></textarea>
+
+          <!--테이블, 컬럼 입력-->
+          <b>테이블, 컬럼</b>
+          <input type="file" accept=".csv" />
+          <table class="convert-table">
             <thead>
               <tr>
                 <th></th>
@@ -50,22 +59,29 @@
             </tbody>
           </table>
         </div>
-      </details>
-      <details class="toggle" open>
-        <summary class="toggle-title">변환</summary>
-        <div class="toggle-contents">
+      </section>
+
+      <section class="section">
+        <!--변환-->
+        <h1 class="section-title">변환</h1>
+        <div class="section-contents">
           <button>변환</button>
         </div>
-      </details>
-      <details class="toggle" open>
-        <summary class="toggle-title">변환된 SQL 출력</summary>
-        <div class="toggle-contents">
-          <textarea class="sql-area" placeholder="sql을 입력해주세요" cols="30" rows="10"></textarea>
+      </section>
+
+      <section class="section">
+        <!--변환된 SQL 출력-->
+        <h1 class="section-title">변환된 SQL 출력</h1>
+        <div class="section-contents">
+          <textarea class="sql-area" placeholder="이곳에 변환된 SQL이 출력됩니다" readonly></textarea>
           <button>다운로드</button>
+          <button>초기화</button>
         </div>
-      </details>
+      </section>
     </main>
+
     <footer class="footer">
+      <!--footer-->
       <div class="footer-content">
         <p class="footer-name">neromalion</p>
         <div class="footer-email">

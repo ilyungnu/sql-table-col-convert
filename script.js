@@ -1,4 +1,5 @@
-const sqlFileInput = document.getElementById('sqlFileInput');
+const sqlFileLoader = document.getElementById('sqlFileLoader');
+const tableFileLoader = document.getElementById('tableFileLoader');
 const sqlBefore = document.getElementById('sqlBefore');
 
 const ReadFile = (CALLBACK, ENCODING) => {
@@ -13,7 +14,13 @@ const ReadFile = (CALLBACK, ENCODING) => {
 };
 
 const SetSqlBefore = (CONTENT, FILENAME) => {
-  sqlBefore.value = CONTENT.result;
+  console.log(CONTENT.result);
+  // sqlBefore.value = CONTENT.result;
+};
+const SetTableBefore = (CONTENT, FILENAME) => {
+  console.log(CONTENT.result);
+  // sqlBefore.value = CONTENT.result;
 };
 
-sqlFileInput.addEventListener('input', () => ReadFile(SetSqlBefore, 'UTF-8'));
+sqlFileLoader.addEventListener('input', () => ReadFile(SetSqlBefore, 'UTF-8'));
+tableFileLoader.addEventListener('input', () => ReadFile(SetTableBefore, 'UTF-8'));

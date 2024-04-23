@@ -6,82 +6,69 @@
     <link rel="stylesheet" href="./style.css" />
     <title>SQL 변환기</title>
   </head>
-  <body data-theme="light">
-    <header class="header">
-      <!--header-->
-      <p>SQL 변환기</p>
+  <body>
+    <header>
+      <!-- header -->
+      <div class="header-content">
+        <h1 class="header-title">SQL CONVERT</h1>
+        <span class="question-mark iconoir--question-mark-circle"></span>
+      </div>
     </header>
 
-    <main class="main">
-      <!--main-->
-      <section class="section">
-        <!--변환할 SQL, 테이블, 컬럼 입력-->
-        <h1 class="section-title">변환할 SQL, 테이블, 컬럼 입력</h1>
-        <div class="section-contents">
-          <!--SQL 입력-->
-          <b>SQL</b>
-          <input id="sqlFileInput" type="file" accept=".sql" multiple />
-          <textarea id="sqlBefore" class="sql-area" placeholder="sql을 입력해주세요"></textarea>
+    <main>
+      <!-- main -->
+      <div class="main-content">
+        <!-- 1. 변환할 SQL 입력 -->
+        <section class="section-content">
+          <h2 class="section-title">1. 변환할 SQL 입력</h2>
+          <p>변환할 SQL을 아래에 직접 입력하거나, 파일(.sql)을 선택해 SQL을 불러와주세요.</p>
+          <details class="toggle" open>
+            <summary>
+              <label for="sqlFileLoader" class="label-btn btn-active">파일선택</label>
+              <input id="sqlFileLoader" type="file" accept=".sql" multiple hidden />
+            </summary>
+            <div>
+              <!-- content -->
+            </div>
+          </details>
+        </section>
 
-          <!--테이블, 컬럼 입력-->
-          <b>테이블, 컬럼</b>
-          <input type="file" accept=".csv" />
-          <table class="convert-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th colspan="2">변환 전</th>
-                <th colspan="2">변환 후</th>
-              </tr>
-              <tr>
-                <th></th>
-                <th>테이블</th>
-                <th>컬럼</th>
-                <th>테이블</th>
-                <th>컬럼</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>1</th>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-              </tr>
-              <tr>
-                <th>2</th>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+        <section class="section-content">
+          <!-- 2. 변환할 내용 입력 -->
+          <h2 class="section-title">2. 변환할 내용 입력</h2>
+          <p>변환할 내용을 아래에 직접 입력하거나, 파일(.csv)을 선택해 내용을 불러와주세요.</p>
+          <details class="toggle" open>
+            <summary>
+              <label for="tableFileLoader" class="label-btn btn-active">파일선택</label>
+              <input id="tableFileLoader" type="file" accept=".csv" hidden />
+            </summary>
+            <div>
+              <!-- content -->
+            </div>
+          </details>
+        </section>
 
-      <section class="section">
-        <!--변환-->
-        <h1 class="section-title">변환</h1>
-        <div class="section-contents">
-          <button>변환</button>
-        </div>
-      </section>
+        <section class="section-content">
+          <!-- 3. 변환 및 다운로드 -->
+          <h2 class="section-title">3. 변환 및 다운로드</h2>
+          <p>SQL을 변환한 뒤, 변환 내용을 확인하고 다운로드해 주세요.</p>
+          <details class="toggle" open>
+            <summary class="btn-double">
+              <button class="btn-disable" disabled>변환</button>
+              <button class="btn-disable" disabled>다운로드</button>
+            </summary>
+            <div>
+              <!-- content -->
+            </div>
+          </details>
+        </section>
 
-      <section class="section">
-        <!--변환된 SQL 출력-->
-        <h1 class="section-title">변환된 SQL 출력</h1>
-        <div class="section-contents">
-          <textarea class="sql-area" placeholder="이곳에 변환된 SQL이 출력됩니다" readonly></textarea>
-          <button>다운로드</button>
-          <button>초기화</button>
-        </div>
-      </section>
+        <section class="section-content"><button class="reset-btn">전체초기화</button></section>
+      </div>
     </main>
 
-    <footer class="footer">
-      <!--footer-->
+    <footer>
+      <!-- footer -->
       <div class="footer-content">
         <p class="footer-name">neromalion</p>
         <div class="footer-email">
@@ -94,6 +81,7 @@
         </div>
       </div>
     </footer>
+
     <script src="./script.js"></script>
   </body>
 </html>

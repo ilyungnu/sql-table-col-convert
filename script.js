@@ -14,8 +14,7 @@ const ReadFile = (CALLBACK, ENCODING) => {
 };
 
 const SetSqlBefore = (CONTENT, FILENAME) => {
-  console.log(CONTENT.result);
-  // sqlBefore.value = CONTENT.result;
+  sqlBefore.value = CONTENT.result;
 };
 const SetTableBefore = (CONTENT, FILENAME) => {
   console.log(CONTENT.result);

@@ -21,14 +21,32 @@
         <!-- 1. 변환할 SQL 입력 -->
         <section class="section-content">
           <h2 class="section-title">1. 변환할 SQL 입력</h2>
-          <p>변환할 SQL을 아래에 직접 입력하거나, 파일(.sql)을 선택해 SQL을 불러와주세요.</p>
           <details class="toggle" open>
             <summary>
-              <label for="sqlFileLoader" class="label-btn btn-active">파일선택</label>
-              <input id="sqlFileLoader" type="file" accept=".sql" multiple hidden />
+              <p>변환할 SQL을 직접 입력하거나, 파일(.sql)을 선택해 SQL을 불러와주세요.</p>
             </summary>
-            <div>
-              <!-- content -->
+            <div class="toggle-content">
+              <!-- file select -->
+              <label for="sqlFileLoader" class="btn-label btn-active">파일선택</label>
+              <input id="sqlFileLoader" type="file" accept=".sql" multiple hidden />
+              <table class="file-list">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox" /></th>
+                    <th>파일명</th>
+                    <th><button>삭제</button></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox" name="" id="" /></td>
+                    <td>파일명</td>
+                    <td><button><span class="lets-icons--dell-duotone"></span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <textarea id="sqlBefore" class="sql-area"></textarea>
             </div>
           </details>
         </section>
@@ -36,14 +54,68 @@
         <section class="section-content">
           <!-- 2. 변환할 내용 입력 -->
           <h2 class="section-title">2. 변환할 내용 입력</h2>
-          <p>변환할 내용을 아래에 직접 입력하거나, 파일(.csv)을 선택해 내용을 불러와주세요.</p>
           <details class="toggle" open>
             <summary>
-              <label for="tableFileLoader" class="label-btn btn-active">파일선택</label>
-              <input id="tableFileLoader" type="file" accept=".csv" hidden />
+              <p>변환할 내용을 직접 입력하거나, 파일(.csv)을 선택해 내용을 불러와주세요.</p>
             </summary>
-            <div>
-              <!-- content -->
+            <div class="toggle-content">
+              <!-- file select -->
+              <label for="tableFileLoader" class="btn-label btn-active">파일선택</label>
+              <input id="tableFileLoader" type="file" accept=".csv" hidden />
+              <table class="file-list">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox" /></th>
+                    <th>파일명</th>
+                    <th><button>삭제</button></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox" name="" id="" /></td>
+                    <td>sql.sql</td>
+                    <td><button><span class="lets-icons--dell-duotone"></span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- table, columns contents -->
+              <table class="table-list">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th colspan="2">변환 전</th>
+                    <th colspan="2">변환 후</th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <th>테이블</th>
+                    <th>컬럼</th>
+                    <th>테이블</th>
+                    <th>컬럼</th>
+                    <th></span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td><input type="text" /></td>
+                    <td><input type="text" /></td>
+                    <td><input type="text" /></td>
+                    <td><input type="text" /></td>
+                    <td><button><span class="lets-icons--dell-duotone"></span></button></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><input type="text" /></td>
+                    <td><input type="text" /></td>
+                    <td><input type="text" /></td>
+                    <td><input type="text" /></td>
+                    <td><button><span class="lets-icons--add-duotone"></span></button></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </details>
         </section>
@@ -51,14 +123,35 @@
         <section class="section-content">
           <!-- 3. 변환 및 다운로드 -->
           <h2 class="section-title">3. 변환 및 다운로드</h2>
-          <p>SQL을 변환한 뒤, 변환 내용을 확인하고 다운로드해 주세요.</p>
+
           <details class="toggle" open>
-            <summary class="btn-double">
-              <button class="btn-disable" disabled>변환</button>
-              <button class="btn-disable" disabled>다운로드</button>
+            <summary>
+              <p>SQL을 변환한 뒤, 변환 내용을 확인하고 다운로드해 주세요.</p>
             </summary>
-            <div>
-              <!-- content -->
+            <div class="toggle-content">
+              <!-- file select -->
+              <div class="btn-double">
+                <button class="btn-disable" disabled>변환</button>
+                <button class="btn-disable" disabled>다운로드</button>
+              </div>
+              <table class="file-list">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox" /></th>
+                    <th>파일명</th>
+                    <th><button>삭제</button></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox" name="" id="" /></td>
+                    <td>파일명</td>
+                    <td><button><span class="lets-icons--dell-duotone"></span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <textarea id="sqlAfter" class="sql-area"></textarea>
             </div>
           </details>
         </section>

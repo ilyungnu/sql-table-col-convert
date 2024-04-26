@@ -27,23 +27,17 @@
             </summary>
             <div class="toggle-content">
               <!-- file select -->
-              <label for="sqlFileLoader" class="btn-label btn-active">파일선택</label>
-              <input id="sqlFileLoader" type="file" accept=".sql" multiple hidden />
-              <table class="file-list">
+              <label for="fileLoaderSql" class="btn-label btn-active">파일선택</label>
+              <input id="fileLoaderSql" type="file" accept=".sql" multiple hidden />
+              <table id="tableSql" class="file-list">
                 <thead>
                   <tr>
                     <th><input type="checkbox" /></th>
                     <th>파일명</th>
-                    <th><button>삭제</button></th>
+                    <th><button class="btn-del-all">삭제</button></th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td><input type="checkbox" name="" id="" /></td>
-                    <td>파일명</td>
-                    <td><button><span class="lets-icons--dell-duotone"></span></button></td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
 
               <textarea id="sqlBefore" class="sql-area"></textarea>
@@ -60,23 +54,17 @@
             </summary>
             <div class="toggle-content">
               <!-- file select -->
-              <label for="tableFileLoader" class="btn-label btn-active">파일선택</label>
-              <input id="tableFileLoader" type="file" accept=".csv" hidden />
-              <table class="file-list">
+              <label for="fileLoaderTable" class="btn-label btn-active">파일선택</label>
+              <input id="fileLoaderTable" type="file" accept=".csv" hidden />
+              <table id="tableCol" class="file-list">
                 <thead>
                   <tr>
                     <th><input type="checkbox" /></th>
                     <th>파일명</th>
-                    <th><button>삭제</button></th>
+                    <th><button class="btn-del-all">삭제</button></th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td><input type="checkbox" name="" id="" /></td>
-                    <td>sql.sql</td>
-                    <td><button><span class="lets-icons--dell-duotone"></span></button></td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
 
               <!-- table, columns contents -->
@@ -84,35 +72,37 @@
                 <thead>
                   <tr>
                     <th></th>
+                    <th></th>
                     <th colspan="2">변환 전</th>
                     <th colspan="2">변환 후</th>
                     <th></th>
                   </tr>
                   <tr>
+                    <th><input type="checkbox" /></th>
                     <th></th>
                     <th>테이블</th>
                     <th>컬럼</th>
                     <th>테이블</th>
                     <th>컬럼</th>
-                    <th></span></th>
+                    <th><button class="btn-del-all">삭제</button></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
+                    <td><input type="checkbox" /></td>
                     <td>1</td>
                     <td><input type="text" /></td>
                     <td><input type="text" /></td>
                     <td><input type="text" /></td>
                     <td><input type="text" /></td>
-                    <td><button><span class="lets-icons--dell-duotone"></span></button></td>
+                    <td>
+                      <button class="btn-del"><span class="lets-icons--dell-duotone"></span></button>
+                    </td>
                   </tr>
                   <tr>
-                    <td>2</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><button><span class="lets-icons--add-duotone"></span></button></td>
+                    <td colspan="7">
+                      <button><span class="lets-icons--add-duotone"></span></button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -139,14 +129,18 @@
                   <tr>
                     <th><input type="checkbox" /></th>
                     <th>파일명</th>
-                    <th><button>삭제</button></th>
+                    <th><button class="btn-del-all">삭제</button></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><input type="checkbox" name="" id="" /></td>
+                    <td><input type="checkbox" /></td>
                     <td>파일명</td>
-                    <td><button><span class="lets-icons--dell-duotone"></span></button></td>
+                    <td>
+                      <button class="btn-del" onclick="DeleteRow(this)">
+                        <span class="lets-icons--dell-duotone"></span>
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

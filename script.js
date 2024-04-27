@@ -4,12 +4,16 @@ const fileLoaderTable = document.getElementById('fileLoaderTable');
 const tableAll = document.querySelectorAll('.file-list, .table-list');
 const tableSql = document.querySelector('#tableSql');
 const tableCol = document.querySelector('#tableCol');
+
 const sqlBefore = document.getElementById('sqlBefore');
+
+let sqlFiles = {};
+let colFiles = {};
 
 //toggle all
 const ToggleAll = (TABLE) => {
-  let headChkbox = TABLE.querySelector('thead input[type=checkbox]');
-  let bodyChkboxes = TABLE.querySelectorAll('tbody input[type=checkbox]');
+  const headChkbox = TABLE.querySelector('thead input[type=checkbox]');
+  const bodyChkboxes = TABLE.querySelectorAll('tbody input[type=checkbox]');
 
   headChkbox.addEventListener('change', () => {
     [...bodyChkboxes].map((i) => (i.checked = headChkbox.checked));
@@ -17,7 +21,7 @@ const ToggleAll = (TABLE) => {
 };
 
 const DeleteRow = (e) => {
-  let row = e.parentNode.parentNode;
+  const row = e.parentNode.parentNode;
   row.parentNode.removeChild(row);
 };
 
@@ -39,28 +43,36 @@ const DeleteAllRow = (TABLE) => {
 });
 
 //file read
-const ReadFile = (TABLE, ENCODING) => {
-  const READER = new FileReader();
-  const FILENAME = event.target.files[0].name;
+const ReadFile = (TABLE, STORAGE, ENCODING) => {
+  let busyReading = false;
 
-  READER.readAsText(event.target.files[0], ENCODING); //파일읽기
-  READER.onload = function () {
-    //읽기완료
-    AddTable(READER, FILENAME, TABLE);
-  };
+  const inputFiles = [...event.target.files];
+  inputFiles.map((FILE) => {
+    if (!busyReading) {
+      const READER = new FileReader();
+      READER.readAsText(FILE, ENCODING); //파일읽기
+      READER.onloadstart = function () {
+        busyReading = true;
+      };
+      READER.onload = function () {
+        //읽기완료
+        AddTable(FILE.name, TABLE);
+        STORAGE[FILE.name] = READER.result;
+        busyReading = false;
+      };
+    }
+  });
+
   event.target.value = '';
 };
 
 //file set
-const AddTable = (CONTENT, FILENAME, TABLE) => {
-  let newRow = document.createElement('tr');
-  let tableBody = TABLE.querySelector('tbody');
-  newRow.innerHTML =
-    `
+const AddTable = (FILENAME, TABLE) => {
+  const newRow = document.createElement('tr');
+  const tableBody = TABLE.querySelector('tbody');
+  newRow.innerHTML = `
     <td><input type="checkbox" /></td>
-    <td>` +
-    FILENAME +
-    `</td>
+    <td onclick="LoadFile()">${FILENAME}</td>
     <td>
       <button class="btn-del" onclick="DeleteRow(this)">
         <span class="lets-icons--dell-duotone"></span>
@@ -70,6 +82,12 @@ const AddTable = (CONTENT, FILENAME, TABLE) => {
 
   tableBody.appendChild(newRow);
 };
+
+const LoadFile = () => {
+  const filename = event.target.innerText;
+  sqlBefore.innerHTML = sqlFiles[filename];
+};
+
 // add event listener
-fileLoaderSql.addEventListener('change', () => ReadFile(tableSql, 'UTF-8'));
-fileLoaderTable.addEventListener('change', () => ReadFile(tableCol, 'UTF-8'));
+fileLoaderSql.addEventListener('change', () => ReadFile(tableSql, sqlFiles, 'UTF-8'));
+fileLoaderTable.addEventListener('change', () => ReadFile(tableCol, colFiles, 'UTF-8'));

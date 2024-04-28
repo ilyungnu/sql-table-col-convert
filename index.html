@@ -3,22 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style/style.css" />
     <title>SQL 변환기</title>
   </head>
   <body>
+    <!-- header: title, explanation -->
     <header>
-      <!-- header -->
       <div class="header-content">
         <h1 class="header-title">SQL CONVERT</h1>
         <span class="question-mark iconoir--question-mark-circle"></span>
       </div>
     </header>
 
+    <!-- main: main contents -->
     <main>
-      <!-- main -->
       <div class="main-content">
-        <!-- 1. 변환할 SQL 입력 -->
+        <!-- 1. -->
         <section class="section-content">
           <h2 class="section-title">1. 변환할 SQL 입력</h2>
           <details class="toggle" open>
@@ -26,56 +26,59 @@
               <p>변환할 SQL을 직접 입력하거나, 파일(.sql)을 선택해 SQL을 불러와주세요.</p>
             </summary>
             <div class="toggle-content">
-              <!-- file select -->
-              <label for="fileLoaderSql" class="btn-label btn-active">파일선택</label>
-              <input id="fileLoaderSql" type="file" accept=".sql" multiple hidden />
-              <table id="tableSql" class="file-list">
+              <!-- file load -->
+              <label for="inputSql" class="label-button active-state">파일선택</label>
+              <input id="inputSql" type="file" accept=".sql" multiple hidden />
+              <table id="tableSql" class="file-table">
                 <thead>
                   <tr>
                     <th><input type="checkbox" /></th>
                     <th>파일명</th>
-                    <th><button class="btn-del-all">삭제</button></th>
+                    <th><button class="delete-all-button">삭제</button></th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                  <!-- loaded contents -->
+                </tbody>
               </table>
 
-              <textarea id="sqlBefore" class="sql-area"></textarea>
+              <textarea id="txtareaSql" class="sql-textarea"></textarea>
             </div>
           </details>
         </section>
 
         <section class="section-content">
-          <!-- 2. 변환할 내용 입력 -->
+          <!-- 2. -->
           <h2 class="section-title">2. 변환할 내용 입력</h2>
           <details class="toggle" open>
             <summary>
               <p>변환할 내용을 직접 입력하거나, 파일(.csv)을 선택해 내용을 불러와주세요.</p>
             </summary>
             <div class="toggle-content">
-              <!-- file select -->
-              <label for="fileLoaderTable" class="btn-label btn-active">파일선택</label>
-              <input id="fileLoaderTable" type="file" accept=".csv" hidden />
-              <table id="tableCol" class="file-list">
+              <!-- file load -->
+              <label for="inputConvert" class="label-button active-state">파일선택</label>
+              <input id="inputConvert" type="file" accept=".csv" hidden />
+              <table id="tableConvert" class="file-table">
                 <thead>
                   <tr>
                     <th><input type="checkbox" /></th>
                     <th>파일명</th>
-                    <th><button class="btn-del-all">삭제</button></th>
+                    <th><button class="delete-all-button">삭제</button></th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                  <!-- loaded contents -->
+                </tbody>
               </table>
 
-              <!-- table, columns contents -->
-              <table class="table-list">
+              <!-- convert contents -->
+              <table class="convert-table">
                 <thead>
                   <tr>
                     <th></th>
                     <th></th>
                     <th colspan="2">변환 전</th>
                     <th colspan="2">변환 후</th>
-                    <th></th>
                   </tr>
                   <tr>
                     <th><input type="checkbox" /></th>
@@ -84,7 +87,7 @@
                     <th>컬럼</th>
                     <th>테이블</th>
                     <th>컬럼</th>
-                    <th><button class="btn-del-all">삭제</button></th>
+                    <th><button class="delete-all-button">삭제</button></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -96,12 +99,12 @@
                     <td><input type="text" /></td>
                     <td><input type="text" /></td>
                     <td>
-                      <button class="btn-del"><span class="lets-icons--dell-duotone"></span></button>
+                      <button class="delete-button"><span class="lets-icons--dell-duotone"></span></button>
                     </td>
                   </tr>
                   <tr>
                     <td colspan="7">
-                      <button><span class="lets-icons--add-duotone"></span></button>
+                      <button class="add-button"><span class="lets-icons--add-duotone"></span></button>
                     </td>
                   </tr>
                 </tbody>
@@ -111,7 +114,7 @@
         </section>
 
         <section class="section-content">
-          <!-- 3. 변환 및 다운로드 -->
+          <!-- 3. -->
           <h2 class="section-title">3. 변환 및 다운로드</h2>
 
           <details class="toggle" open>
@@ -119,43 +122,35 @@
               <p>SQL을 변환한 뒤, 변환 내용을 확인하고 다운로드해 주세요.</p>
             </summary>
             <div class="toggle-content">
-              <!-- file select -->
-              <div class="btn-double">
-                <button class="btn-disable" disabled>변환</button>
-                <button class="btn-disable" disabled>다운로드</button>
+              <!-- result -->
+              <div class="double-contents-area">
+                <button class="disable-state" disabled>변환</button>
+                <button class="disable-state" disabled>다운로드</button>
               </div>
-              <table class="file-list">
+              <table class="file-table">
                 <thead>
                   <tr>
                     <th><input type="checkbox" /></th>
                     <th>파일명</th>
-                    <th><button class="btn-del-all">삭제</button></th>
+                    <th><button class="delete-all-button">삭제</button></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- <tr>
-                    <td><input type="checkbox" /></td>
-                    <td>파일명</td>
-                    <td>
-                      <button class="btn-del" onclick="DeleteRow(this)">
-                        <span class="lets-icons--dell-duotone"></span>
-                      </button>
-                    </td>
-                  </tr> -->
+                  <!-- result contents -->
                 </tbody>
               </table>
 
-              <textarea id="sqlAfter" class="sql-area"></textarea>
+              <textarea id="textareaResult" class="sql-textarea"></textarea>
             </div>
           </details>
         </section>
 
-        <section class="section-content"><button class="reset-btn">전체초기화</button></section>
+        <section class="section-content"><button class="reset-button">전체초기화</button></section>
       </div>
     </main>
 
+    <!-- footer: developer, contact, site -->
     <footer>
-      <!-- footer -->
       <div class="footer-content">
         <p class="footer-name">neromalion</p>
         <div class="footer-email">
@@ -169,6 +164,6 @@
       </div>
     </footer>
 
-    <script src="./script.js"></script>
+    <script src="./js/script.js"></script>
   </body>
 </html>

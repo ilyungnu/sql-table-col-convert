@@ -1,32 +1,32 @@
-const fileLoaderSql = document.getElementById('fileLoaderSql');
-const fileLoaderTable = document.getElementById('fileLoaderTable');
+const inputSql = document.getElementById('inputSql');
+const inputConvert = document.getElementById('inputConvert');
 
-const tableAll = document.querySelectorAll('.file-list, .table-list');
+const tableAll = document.querySelectorAll('.file-table, .convert-table');
 const tableSql = document.querySelector('#tableSql');
-const tableCol = document.querySelector('#tableCol');
+const tableConvert = document.querySelector('#tableConvert');
 
-const sqlBefore = document.getElementById('sqlBefore');
+const txtareaSql = document.getElementById('txtareaSql');
 
 let sqlFiles = {};
 let colFiles = {};
 
 //toggle all
 const ToggleAll = (TABLE) => {
-  const headChkbox = TABLE.querySelector('thead input[type=checkbox]');
-  const bodyChkboxes = TABLE.querySelectorAll('tbody input[type=checkbox]');
+  const headChk = TABLE.querySelector('thead input[type=checkbox]');
+  const bodyChk = TABLE.querySelectorAll('tbody input[type=checkbox]');
 
-  headChkbox.addEventListener('change', () => {
-    [...bodyChkboxes].map((i) => (i.checked = headChkbox.checked));
+  headChk.addEventListener('change', () => {
+    [...bodyChk].map((i) => (i.checked = headChk.checked));
   });
 };
 
-const DeleteRow = (e) => {
+const DelRow = (e) => {
   const row = e.parentNode.parentNode;
   row.parentNode.removeChild(row);
 };
 
-const DeleteAllRow = (TABLE) => {
-  let delAllBtn = TABLE.querySelector('thead .btn-del-all');
+const DelAllRow = (TABLE) => {
+  let delAllBtn = TABLE.querySelector('thead .delete-all-button');
 
   delAllBtn.addEventListener('click', () => {
     let Chkboxes = TABLE.querySelectorAll('tbody input[type=checkbox]');
@@ -39,7 +39,7 @@ const DeleteAllRow = (TABLE) => {
 //set file table function
 [...tableAll].map((e) => {
   ToggleAll(e);
-  DeleteAllRow(e);
+  DelAllRow(e);
 });
 
 //file read
@@ -74,7 +74,7 @@ const AddTable = (FILENAME, TABLE) => {
     <td><input type="checkbox" /></td>
     <td onclick="LoadFile()">${FILENAME}</td>
     <td>
-      <button class="btn-del" onclick="DeleteRow(this)">
+      <button class="delete-button" onclick="DelRow(this)">
         <span class="lets-icons--dell-duotone"></span>
       </button>
     </td>
@@ -85,9 +85,9 @@ const AddTable = (FILENAME, TABLE) => {
 
 const LoadFile = () => {
   const filename = event.target.innerText;
-  sqlBefore.innerHTML = sqlFiles[filename];
+  txtareaSql.innerHTML = sqlFiles[filename];
 };
 
 // add event listener
-fileLoaderSql.addEventListener('change', () => ReadFile(tableSql, sqlFiles, 'UTF-8'));
-fileLoaderTable.addEventListener('change', () => ReadFile(tableCol, colFiles, 'UTF-8'));
+inputSql.addEventListener('change', () => ReadFile(tableSql, sqlFiles, 'UTF-8'));
+inputConvert.addEventListener('change', () => ReadFile(tableConvert, colFiles, 'UTF-8'));

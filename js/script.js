@@ -18,8 +18,8 @@ const tableCvt = document.getElementById('tableCvt');
 const txtareaResult = document.getElementById('txtareaResult');
 
 // file
-let sqlFiles = {};
-let cvtFiles = {};
+let sqlFiles = new Object();
+let cvtFiles = new Object();
 
 /********** basic table function */
 // toggle all
@@ -59,38 +59,29 @@ const DelRow = (e) => {
 
 // sql table
 const InputSqlEvt = () => {
-  sqlFiles = {};
-  [...tableSqlFile.querySelectorAll('tbody tr')].map((i) => i.remove());
-  ReadSqlFile(event);
-
-  // tableSqlFile.querySelector('tbody > tr:first-child > .file-name').click();
-
-  if (tableSqlFile.hidden) {
-    tableSqlFile.hidden = false;
+  const inputFiles = [...event.target.files];
+  if (Object.keys(sqlFiles).length > 0) {
+    sqlFiles = new Object();
+    [...tableSqlFile.querySelectorAll('tbody tr')].map((i) => i.remove());
   }
+
+  Promise.all(inputFiles.map(ReadSqlFile)).then(() => {
+    if (tableSqlFile.hidden) tableSqlFile.hidden = false;
+    tableSqlFile.querySelector('tbody > tr:first-child > .file-name').click();
+  });
+  event.target.value = '';
 };
 
-const ReadSqlFile = (EVENT) => {
-  let busyReading = false;
-  const inputFiles = [...EVENT.target.files];
-
-  inputFiles.map((FILE) => {
-    if (!busyReading) {
-      const READER = new FileReader();
-      // read file
-      READER.readAsText(FILE, 'UTF-8');
-      // set reader condition
-      READER.onloadstart = () => (busyReading = true);
-      // read complete
-      READER.onload = () => {
-        AddSqlRow(FILE.name, tableSqlFile);
-        sqlFiles[FILE.name] = READER.result;
-        busyReading = false;
-      };
-    }
+const ReadSqlFile = (FILE) => {
+  return new Promise((resolve) => {
+    const READER = new FileReader();
+    READER.readAsText(FILE, 'UTF-8');
+    READER.onload = () => {
+      AddSqlRow(FILE.name, tableSqlFile);
+      sqlFiles[FILE.name] = READER.result;
+      resolve();
+    };
   });
-
-  EVENT.target.value = '';
 };
 
 const AddSqlRow = (FILENAME, TABLE) => {
@@ -121,37 +112,29 @@ const LoadSqlFile = () => {
 
 // convert table
 const InputCvtEvt = () => {
-  cvtFiles = {};
-  tableCvtFile.querySelector('tbody > tr').remove();
+  const inputFiles = [...event.target.files];
+  if (Object.keys(cvtFiles).length > 0) {
+    cvtFiles = new Object();
+    [...tableCvtFile.querySelectorAll('tbody tr')].map((i) => i.remove());
+  }
 
-  ReadCvtFile(event);
+  Promise.all(inputFiles.map(ReadCvtFile)).then(() => {
+    if (tableCvtFile.hidden) tableCvtFile.hidden = false;
+    tableCvtFile.querySelector('tbody > tr:first-child > .file-name').click();
+  });
+  event.target.value = '';
 };
 
-const ReadCvtFile = () => {
-  let busyReading = false;
-  const inputFiles = [...event.target.files];
-
-  inputFiles.map((FILE) => {
-    if (!busyReading) {
-      const READER = new FileReader();
-      // read file
-      READER.readAsText(FILE, 'ANSI');
-      // set reader condition
-      READER.onloadstart = () => (busyReading = true);
-      // read complete
-      READER.onload = () => {
-        AddCvtRow(FILE.name, tableCvtFile);
-        cvtFiles[FILE.name] = READER.result;
-        busyReading = false;
-
-        if (tableCvtFile.hidden) {
-          tableCvtFile.hidden = false;
-        }
-      };
-    }
+const ReadCvtFile = (FILE) => {
+  return new Promise((resolve) => {
+    const READER = new FileReader();
+    READER.readAsText(FILE, 'UTF-8');
+    READER.onload = () => {
+      AddCvtRow(FILE.name, tableCvtFile);
+      cvtFiles[FILE.name] = READER.result;
+      resolve();
+    };
   });
-
-  event.target.value = '';
 };
 
 const AddCvtRow = (FILENAME, TABLE) => {
@@ -177,4 +160,4 @@ const LoadCvtFile = () => {
 
 // event listener
 inputSql.addEventListener('change', () => InputSqlEvt());
-inputCvt.addEventListener('change', () => ReadCvtFile());
+inputCvt.addEventListener('change', () => InputCvtEvt());

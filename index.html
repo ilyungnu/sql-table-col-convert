@@ -29,7 +29,7 @@
               <!-- file load -->
               <label for="inputSql" class="label-button active-state">파일선택</label>
               <input id="inputSql" type="file" accept=".sql" multiple hidden />
-              <table id="tableSql" class="file-table">
+              <table id="tableSqlFile" class="file-table">
                 <thead>
                   <tr>
                     <th><input type="checkbox" /></th>
@@ -42,7 +42,13 @@
                 </tbody>
               </table>
 
-              <textarea id="txtareaSql" class="sql-textarea"></textarea>
+              <div class="sql-content">
+                <div class="sql-header">
+                  <span>파일명</span>
+                  <button><span class="material-symbols-light--download"></span></button>
+                </div>
+                <textarea id="txtareaSql"></textarea>
+              </div>
             </div>
           </details>
         </section>
@@ -50,15 +56,15 @@
         <section class="section-content">
           <!-- 2. -->
           <h2 class="section-title">2. 변환할 내용 입력</h2>
-          <details class="toggle" open>
+          <details class="toggle">
             <summary>
               <p>변환할 내용을 직접 입력하거나, 파일(.csv)을 선택해 내용을 불러와주세요.</p>
             </summary>
             <div class="toggle-content">
               <!-- file load -->
-              <label for="inputConvert" class="label-button active-state">파일선택</label>
-              <input id="inputConvert" type="file" accept=".csv" hidden />
-              <table id="tableConvert" class="file-table">
+              <label for="inputCvt" class="label-button active-state">파일선택</label>
+              <input id="inputCvt" type="file" accept=".csv" hidden />
+              <table id="tableCvtFile" class="file-table">
                 <thead>
                   <tr>
                     <th><input type="checkbox" /></th>
@@ -72,7 +78,7 @@
               </table>
 
               <!-- convert contents -->
-              <table class="convert-table">
+              <table id="tableCvt" class="convert-table">
                 <thead>
                   <tr>
                     <th></th>
@@ -117,17 +123,17 @@
           <!-- 3. -->
           <h2 class="section-title">3. 변환 및 다운로드</h2>
 
-          <details class="toggle" open>
+          <details class="toggle">
             <summary>
               <p>SQL을 변환한 뒤, 변환 내용을 확인하고 다운로드해 주세요.</p>
             </summary>
             <div class="toggle-content">
               <!-- result -->
               <div class="double-contents-area">
-                <button class="disable-state" disabled>변환</button>
-                <button class="disable-state" disabled>다운로드</button>
+                <button id="btnCvt" class="disable-state" disabled>변환</button>
+                <button id="btnDownload" class="disable-state" disabled>다운로드</button>
               </div>
-              <table class="file-table">
+              <table id="tableResultFIle" class="file-table">
                 <thead>
                   <tr>
                     <th><input type="checkbox" /></th>
@@ -140,7 +146,13 @@
                 </tbody>
               </table>
 
-              <textarea id="textareaResult" class="sql-textarea"></textarea>
+              <div class="sql-content">
+                <div class="sql-header">
+                  <span>파일명</span>
+                  <button><span class="material-symbols-light--download"></span></button>
+                </div>
+                <textarea id="txtareaResult"></textarea>
+              </div>
             </div>
           </details>
         </section>

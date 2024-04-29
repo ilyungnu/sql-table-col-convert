@@ -1,12 +1,21 @@
-const inputSql = document.getElementById('inputSql');
-const inputConvert = document.getElementById('inputConvert');
+// button
+const inputSql = document.querySelector('#inputSql');
+const inputCvt = document.querySelector('#inputCvt');
+const btnCvt = document.querySelector('#btnCvt');
+const btnDownload = document.querySelector('#btnDownload');
 
+// file list
 const tableAll = document.querySelectorAll('.file-table, .convert-table');
-const tableSql = document.querySelector('#tableSql');
-const tableConvert = document.querySelector('#tableConvert');
+const tableSqlFile = document.querySelector('#tableSqlFile');
+const tableCvtFile = document.querySelector('#tableCvtFile');
+const tableResultFIle = document.querySelector('#tableResultFIle');
 
-const txtareaSql = document.getElementById('txtareaSql');
+// file content
+const txtareaSql = document.querySelector('#txtareaSql');
+const tableCvt = document.querySelector('#tableCvt');
+const txtareaResult = document.querySelector('#txtareaResult');
 
+// file
 let sqlFiles = {};
 let colFiles = {};
 
@@ -89,5 +98,5 @@ const LoadFile = () => {
 };
 
 // add event listener
-inputSql.addEventListener('change', () => ReadFile(tableSql, sqlFiles, 'UTF-8'));
-inputConvert.addEventListener('change', () => ReadFile(tableConvert, colFiles, 'UTF-8'));
+inputSql.addEventListener('change', () => ReadFile(tableSqlFile, sqlFiles, 'UTF-8'));
+inputCvt.addEventListener('change', () => ReadFile(tableCvtFile, colFiles, 'UTF-8'));

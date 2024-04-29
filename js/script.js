@@ -21,6 +21,9 @@ const txtareaSql = document.getElementById('txtareaSql');
 const filenameResult = document.getElementById('filenameResult');
 const txtareaResult = document.getElementById('txtareaResult');
 
+// etc
+const contactEmail = document.getElementById('contactEmail');
+
 // file
 let sqlFiles = new Object();
 let cvtFiles = new Object();
@@ -207,6 +210,13 @@ const AddCvtRow = () => {
 
   tableBody.appendChild(newRow);
 };
+
+// copy contact email
+contactEmail.addEventListener('click', () => {
+  window.navigator.clipboard.writeText(contactEmail.innerText).then(() => {
+    /* copy complete */
+  });
+});
 
 // event listener
 inputSql.addEventListener('change', InputSqlEvt);

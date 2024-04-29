@@ -27,14 +27,14 @@
             </summary>
             <div class="toggle-content">
               <!-- file load -->
-              <label for="inputSql" class="label-button active-state">파일선택</label>
+              <label for="inputSql" class="label-button button-active-state">파일선택</label>
               <input id="inputSql" type="file" accept=".sql" multiple hidden />
-              <table id="tableSqlFile" class="file-table">
+              <table id="tableSqlFile" class="file-table" hidden>
                 <thead>
                   <tr>
                     <th><input type="checkbox" /></th>
                     <th>파일명</th>
-                    <th><button class="delete-all-button">삭제</button></th>
+                    <th><button class="delete-chkrow-button">삭제</button></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -44,7 +44,7 @@
 
               <div class="sql-content">
                 <div class="sql-header">
-                  <span>파일명</span>
+                  <span id="filenameSql">SQL</span>
                   <button><span class="material-symbols-light--download"></span></button>
                 </div>
                 <textarea id="txtareaSql"></textarea>
@@ -56,20 +56,20 @@
         <section class="section-content">
           <!-- 2. -->
           <h2 class="section-title">2. 변환할 내용 입력</h2>
-          <details class="toggle">
+          <details class="toggle" open>
             <summary>
               <p>변환할 내용을 직접 입력하거나, 파일(.csv)을 선택해 내용을 불러와주세요.</p>
             </summary>
             <div class="toggle-content">
               <!-- file load -->
-              <label for="inputCvt" class="label-button active-state">파일선택</label>
+              <label for="inputCvt" class="label-button button-active-state">파일선택</label>
               <input id="inputCvt" type="file" accept=".csv" hidden />
-              <table id="tableCvtFile" class="file-table">
+              <table id="tableCvtFile" class="file-table" hidden>
                 <thead>
                   <tr>
                     <th><input type="checkbox" /></th>
                     <th>파일명</th>
-                    <th><button class="delete-all-button">삭제</button></th>
+                    <th><button class="delete-chkrow-button">삭제</button></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -93,7 +93,7 @@
                     <th>컬럼</th>
                     <th>테이블</th>
                     <th>컬럼</th>
-                    <th><button class="delete-all-button">삭제</button></th>
+                    <th><button class="delete-chkrow-button">삭제</button></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -130,15 +130,15 @@
             <div class="toggle-content">
               <!-- result -->
               <div class="double-contents-area">
-                <button id="btnCvt" class="disable-state" disabled>변환</button>
-                <button id="btnDownload" class="disable-state" disabled>다운로드</button>
+                <button id="btnCvt" class="button-disable-state" disabled>변환</button>
+                <button id="btnDownload" class="button-disable-state" disabled>다운로드</button>
               </div>
               <table id="tableResultFIle" class="file-table">
                 <thead>
                   <tr>
                     <th><input type="checkbox" /></th>
                     <th>파일명</th>
-                    <th><button class="delete-all-button">삭제</button></th>
+                    <th><button class="delete-chkrow-button">삭제</button></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -148,7 +148,7 @@
 
               <div class="sql-content">
                 <div class="sql-header">
-                  <span>파일명</span>
+                  <span>Result</span>
                   <button><span class="material-symbols-light--download"></span></button>
                 </div>
                 <textarea id="txtareaResult"></textarea>
@@ -168,7 +168,7 @@
         <div class="footer-email">
           <span>contact: </span>
           <address>neromalion@gmail.com</address>
-          <span class="mdi--clipboard-outline"></span>
+          <span class="guide-img-copy mdi--clipboard-outline"></span>
         </div>
         <div class="footer-link">
           <a href="https://github.com/neromalion"><span class="bi--github"></span></a>

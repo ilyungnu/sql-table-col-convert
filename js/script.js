@@ -56,9 +56,8 @@ const DelChkRow = (TABLE) => {
 
 /********** dynamic table function */
 // common
-const DelRow = (e) => {
-  const row = e.parentNode.parentNode;
-  row.parentNode.removeChild(row);
+const DelRow = () => {
+  event.target.closest('tr').remove();
 };
 
 // sql file table
@@ -95,7 +94,7 @@ const AddSqlFileRow = (FILENAME, TABLE) => {
     <td><input type="checkbox" /></td>
     <td class='file-name' onclick="LoadSqlFile()">${FILENAME}</td>
     <td>
-      <button class="delete-button" onclick="DelRow(this)">
+      <button class="delete-button" onclick="DelRow()">
         <span class="lets-icons--dell-duotone"></span>
       </button>
     </td>
@@ -166,15 +165,17 @@ const LoadCvtFile = () => {
 const AddCvtRow = () => {
   const newRow = document.createElement('tr');
   const tableBody = tableCvt.querySelector('tbody');
+  const num = tableBody.querySelectorAll('tr').length + 1;
+
   newRow.innerHTML = `
     <td><input type="checkbox" /></td>
-    <td>1</td>
+    <td>${num}</td>
     <td><input type="text" /></td>
     <td><input type="text" /></td>
     <td><input type="text" /></td>
     <td><input type="text" /></td>
     <td>
-      <button class="delete-button"><span class="lets-icons--dell-duotone"></span></button>
+      <button onclick="DelRow()" class="delete-button"><span class="lets-icons--dell-duotone"></span></button>
     </td>
   `;
 

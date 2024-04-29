@@ -131,10 +131,10 @@ const InputCvtEvt = () => {
 const ReadCvtFile = (FILE) => {
   return new Promise((resolve) => {
     const READER = new FileReader();
-    READER.readAsText(FILE, 'UTF-8');
+    READER.readAsText(FILE, 'euc-kr');
     READER.onload = () => {
       AddCvtFileRow(FILE.name, tableCvtFile);
-      cvtFiles[FILE.name] = READER.result;
+      cvtFiles[FILE.name] = READER.result.slice(0, -2); // 마지막 엔터 제외
       resolve();
     };
   });
@@ -147,7 +147,7 @@ const AddCvtFileRow = (FILENAME, TABLE) => {
     <td><input type="checkbox" /></td>
     <td class='file-name' onclick="LoadCvtFile()">${FILENAME}</td>
     <td>
-      <button class="delete-button" onclick="DelRow(this)">
+      <button class="delete-button" onclick="DelRow()">
         <span class="lets-icons--dell-duotone"></span>
       </button>
     </td>
@@ -158,10 +158,36 @@ const AddCvtFileRow = (FILENAME, TABLE) => {
 
 const LoadCvtFile = () => {
   const fileItem = event.target;
+  const cvsSplit = cvtFiles[event.target.innerText].split('\n');
   fileItem.className += ' label-active-state';
+
+  [...tableCvt.querySelectorAll('tbody tr')].map((i) => i.remove());
+  cvsSplit.map(LoadCvtRow);
 };
 
 // convert table
+const LoadCvtRow = (CVS) => {
+  const newRow = document.createElement('tr');
+  const tableBody = tableCvt.querySelector('tbody');
+
+  const itemArry = CVS.split(',');
+  const num = tableBody.querySelectorAll('tr').length + 1;
+
+  newRow.innerHTML = `
+    <td><input type="checkbox" /></td>
+    <td>${num}</td>
+    <td><input type="text" value="${itemArry[0]}"/></td>
+    <td><input type="text" value="${itemArry[1]}"/></td>
+    <td><input type="text" value="${itemArry[2]}"/></td>
+    <td><input type="text" value="${itemArry[3]}"/></td>
+    <td>
+      <button onclick="DelRow()" class="delete-button"><span class="lets-icons--dell-duotone"></span></button>
+    </td>
+  `;
+
+  tableBody.appendChild(newRow);
+};
+
 const AddCvtRow = () => {
   const newRow = document.createElement('tr');
   const tableBody = tableCvt.querySelector('tbody');

@@ -214,9 +214,6 @@ table button > span {
 .delete-button > span {
   color: var(--hard-grey);
 }
-.add-button > span {
-  color: var(--active);
-}
 .file-name:active {
   filter: invert(40%);
 }
@@ -269,6 +266,17 @@ table button > span {
 }
 .convert-table tr > :last-child {
   text-align: center;
+}
+.add-button {
+  width: fit-content;
+  padding: 0;
+  align-self: center;
+  background: none;
+}
+.add-button > span {
+  width: 44px;
+  height: 44px;
+  color: var(--active);
 }
 
 /* sql content */

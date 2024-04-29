@@ -2,6 +2,7 @@
 // button
 const inputSql = document.getElementById('inputSql');
 const inputCvt = document.getElementById('inputCvt');
+const btnAddCvtRow = document.getElementById('btnAddCvtRow');
 const btnCvt = document.getElementById('btnCvt');
 const btnDownload = document.getElementById('btnDownload');
 
@@ -11,10 +12,13 @@ const tableSqlFile = document.getElementById('tableSqlFile');
 const tableCvtFile = document.getElementById('tableCvtFile');
 const tableResultFIle = document.getElementById('tableResultFIle');
 
-// file content
+// convert table
+const tableCvt = document.getElementById('tableCvt');
+
+// file textarea
 const filenameSql = document.getElementById('filenameSql');
 const txtareaSql = document.getElementById('txtareaSql');
-const tableCvt = document.getElementById('tableCvt');
+const filenameResult = document.getElementById('filenameResult');
 const txtareaResult = document.getElementById('txtareaResult');
 
 // file
@@ -25,9 +29,9 @@ let cvtFiles = new Object();
 // toggle all
 const ToggleAll = (TABLE) => {
   const headChk = TABLE.querySelector('thead input[type=checkbox]');
-  const bodyChk = TABLE.querySelectorAll('tbody input[type=checkbox]');
 
   headChk.addEventListener('change', () => {
+    const bodyChk = TABLE.querySelectorAll('tbody input[type=checkbox]');
     [...bodyChk].map((i) => (i.checked = headChk.checked));
   });
 };
@@ -57,7 +61,7 @@ const DelRow = (e) => {
   row.parentNode.removeChild(row);
 };
 
-// sql table
+// sql file table
 const InputSqlEvt = () => {
   const inputFiles = [...event.target.files];
   if (Object.keys(sqlFiles).length > 0) {
@@ -77,14 +81,14 @@ const ReadSqlFile = (FILE) => {
     const READER = new FileReader();
     READER.readAsText(FILE, 'UTF-8');
     READER.onload = () => {
-      AddSqlRow(FILE.name, tableSqlFile);
+      AddSqlFileRow(FILE.name, tableSqlFile);
       sqlFiles[FILE.name] = READER.result;
       resolve();
     };
   });
 };
 
-const AddSqlRow = (FILENAME, TABLE) => {
+const AddSqlFileRow = (FILENAME, TABLE) => {
   const newRow = document.createElement('tr');
   const tableBody = TABLE.querySelector('tbody');
   newRow.innerHTML = `
@@ -110,7 +114,7 @@ const LoadSqlFile = () => {
   txtareaSql.innerHTML = sqlFiles[filename];
 };
 
-// convert table
+// convert file table
 const InputCvtEvt = () => {
   const inputFiles = [...event.target.files];
   if (Object.keys(cvtFiles).length > 0) {
@@ -130,14 +134,14 @@ const ReadCvtFile = (FILE) => {
     const READER = new FileReader();
     READER.readAsText(FILE, 'UTF-8');
     READER.onload = () => {
-      AddCvtRow(FILE.name, tableCvtFile);
+      AddCvtFileRow(FILE.name, tableCvtFile);
       cvtFiles[FILE.name] = READER.result;
       resolve();
     };
   });
 };
 
-const AddCvtRow = (FILENAME, TABLE) => {
+const AddCvtFileRow = (FILENAME, TABLE) => {
   const newRow = document.createElement('tr');
   const tableBody = TABLE.querySelector('tbody');
   newRow.innerHTML = `
@@ -158,6 +162,26 @@ const LoadCvtFile = () => {
   fileItem.className += ' label-active-state';
 };
 
+// convert table
+const AddCvtRow = () => {
+  const newRow = document.createElement('tr');
+  const tableBody = tableCvt.querySelector('tbody');
+  newRow.innerHTML = `
+    <td><input type="checkbox" /></td>
+    <td>1</td>
+    <td><input type="text" /></td>
+    <td><input type="text" /></td>
+    <td><input type="text" /></td>
+    <td><input type="text" /></td>
+    <td>
+      <button class="delete-button"><span class="lets-icons--dell-duotone"></span></button>
+    </td>
+  `;
+
+  tableBody.appendChild(newRow);
+};
+
 // event listener
-inputSql.addEventListener('change', () => InputSqlEvt());
-inputCvt.addEventListener('change', () => InputCvtEvt());
+inputSql.addEventListener('change', InputSqlEvt);
+inputCvt.addEventListener('change', InputCvtEvt);
+btnAddCvtRow.addEventListener('click', AddCvtRow);

@@ -41,13 +41,20 @@ const ToggleAll = (TABLE) => {
 
 // delete checked rows
 const DelChkRow = (TABLE) => {
-  let delChkBtn = TABLE.querySelector('thead .delete-chkrow-button');
+  const delChkBtn = TABLE.querySelector('thead .delete-chkrow-button');
 
   delChkBtn.addEventListener('click', () => {
-    let Chkboxes = TABLE.querySelectorAll('tbody input[type=checkbox]');
+    const Chkboxes = TABLE.querySelectorAll('tbody input[type=checkbox]');
     [...Chkboxes].map((i) => {
       if (i.checked) i.closest('tr').remove();
     });
+
+    TABLE.querySelector('thead th input').checked = false;
+
+    if (TABLE == tableCvt) {
+      const restItem = TABLE.querySelectorAll('tbody input[type=checkbox]').length;
+      restItem == 0 ? AddCvtRow() : 0;
+    }
   });
 };
 
@@ -208,7 +215,9 @@ const AddCvtRow = () => {
     <td><input type="text" /></td>
     <td><input type="text" /></td>
     <td>
-      <button onclick="DelCvtRow()" class="delete-button"><span class="lets-icons--dell-duotone"></span></button>
+      <button onclick="DelCvtRow()" class="delete-button">
+        <span class="lets-icons--dell-duotone"></span>
+      </button>
     </td>
   `;
 
@@ -223,13 +232,15 @@ const DelCvtRow = () => {
 
   myRow.remove();
   UpdateRowNum();
+
+  cvtNum == 0 ? AddCvtRow() : 0;
 };
 
 function UpdateRowNum() {
   const Rows = tableCvt.querySelectorAll('tbody tr');
 
   for (let i = 0; i < Rows.length; i++) {
-    let rowNumberCell = Rows[i].querySelectorAll('td')[1];
+    const rowNumberCell = Rows[i].querySelectorAll('td')[1];
     rowNumberCell.textContent = i + 1;
   }
 }

@@ -139,7 +139,10 @@ const ReadCvtFile = (FILE) => {
     READER.readAsText(FILE, 'euc-kr');
     READER.onload = () => {
       AddCvtFileRow(FILE.name, tableCvtFile);
-      cvtFiles = READER.result.slice(0, -2).split('\n'); // 마지막 엔터 제외
+      cvtFiles = READER.result
+        .split('\r\n')
+        .filter(Boolean)
+        .map((i) => i.trim());
       resolve();
     };
   });

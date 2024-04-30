@@ -110,13 +110,12 @@ const AddSqlFileRow = (FILENAME, TABLE) => {
 };
 
 const LoadSqlFile = () => {
-  const fileItem = event.target;
-  const fileItems = fileItem.closest('tbody').querySelectorAll('tr > .file-name');
-  const filename = fileItem.innerText;
+  const fileItems = event.target.closest('tbody').querySelectorAll('tr > .file-name');
+  const filename = event.target.innerText;
 
   [...fileItems].map((i) => (i.innerText == filename ? (i.className += ' label-active-state') : i.classList.remove('label-active-state')));
   filenameSql.innerHTML = filename;
-  txtareaSql.innerHTML = sqlFiles[filename];
+  txtareaSql.value = sqlFiles[filename];
 };
 
 const DelSqlRow = () => {

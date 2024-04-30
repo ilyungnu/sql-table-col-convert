@@ -5,6 +5,7 @@ const inputCvt = document.getElementById('inputCvt');
 const btnAddCvtRow = document.getElementById('btnAddCvtRow');
 const btnCvt = document.getElementById('btnCvt');
 const btnDownload = document.getElementById('btnDownload');
+const btnSqlSave = document.getElementById('btnSqlSave');
 
 // file list
 const tableAll = document.querySelectorAll('.file-table, .convert-table');
@@ -249,6 +250,21 @@ function UpdateRowNum() {
     rowNumberCell.textContent = i + 1;
   }
 }
+
+// save content
+btnSqlSave.addEventListener('click', () => {
+  const content = event.target.closest('.sql-content').querySelector('textarea').value;
+  const blob = new Blob([content], { type: 'application/sql' });
+  const url = document.createElement('a');
+
+  url.download = 'text_file.sql';
+  url.href = window.URL.createObjectURL(blob);
+  url.style.display = 'none';
+
+  document.body.appendChild(url);
+  url.click();
+  document.body.removeChild(url);
+});
 
 // copy contact email
 contactEmail.addEventListener('click', () => {

@@ -26,7 +26,7 @@ const contactEmail = document.getElementById('contactEmail');
 
 // file
 let sqlFiles = new Object();
-let cvtFiles = new Object();
+let cvtFiles = [];
 
 /********** basic table function */
 // toggle all
@@ -58,11 +58,6 @@ const DelChkRow = (TABLE) => {
 });
 
 /********** dynamic table function */
-// common
-const DelRow = () => {
-  event.target.closest('tr').remove();
-};
-
 // sql file table
 const InputSqlEvt = () => {
   const inputFiles = [...event.target.files];
@@ -97,7 +92,7 @@ const AddSqlFileRow = (FILENAME, TABLE) => {
     <td><input type="checkbox" /></td>
     <td class='file-name' onclick="LoadSqlFile()">${FILENAME}</td>
     <td>
-      <button class="delete-button" onclick="DelRow()">
+      <button class="delete-button" onclick="DelSqlRow()">
         <span class="lets-icons--dell-duotone"></span>
       </button>
     </td>
@@ -116,11 +111,18 @@ const LoadSqlFile = () => {
   txtareaSql.innerHTML = sqlFiles[filename];
 };
 
+const DelSqlRow = () => {
+  const myRow = event.target.closest('tr');
+  const delFileName = myRow.querySelector('.file-name').innerText;
+  delete sqlFiles[delFileName];
+  myRow.remove();
+};
+
 // convert file table
 const InputCvtEvt = () => {
   const inputFiles = [...event.target.files];
-  if (Object.keys(cvtFiles).length > 0) {
-    cvtFiles = new Object();
+  if (cvtFiles.length > 0) {
+    cvtFiles = [];
     [...tableCvtFile.querySelectorAll('tbody tr')].map((i) => i.remove());
   }
 
@@ -137,7 +139,7 @@ const ReadCvtFile = (FILE) => {
     READER.readAsText(FILE, 'euc-kr');
     READER.onload = () => {
       AddCvtFileRow(FILE.name, tableCvtFile);
-      cvtFiles[FILE.name] = READER.result.slice(0, -2); // 마지막 엔터 제외
+      cvtFiles = READER.result.slice(0, -2).split('\n'); // 마지막 엔터 제외
       resolve();
     };
   });
@@ -150,7 +152,7 @@ const AddCvtFileRow = (FILENAME, TABLE) => {
     <td><input type="checkbox" /></td>
     <td class='file-name' onclick="LoadCvtFile()">${FILENAME}</td>
     <td>
-      <button class="delete-button" onclick="DelRow()">
+      <button class="delete-button" onclick="DelSqlRow()">
         <span class="lets-icons--dell-duotone"></span>
       </button>
     </td>
@@ -161,11 +163,10 @@ const AddCvtFileRow = (FILENAME, TABLE) => {
 
 const LoadCvtFile = () => {
   const fileItem = event.target;
-  const cvsSplit = cvtFiles[event.target.innerText].split('\n');
   fileItem.className += ' label-active-state';
 
   [...tableCvt.querySelectorAll('tbody tr')].map((i) => i.remove());
-  cvsSplit.map(LoadCvtRow);
+  cvtFiles.map(LoadCvtRow);
 };
 
 // convert table
@@ -184,7 +185,7 @@ const LoadCvtRow = (CVS) => {
     <td><input type="text" value="${itemArry[2]}"/></td>
     <td><input type="text" value="${itemArry[3]}"/></td>
     <td>
-      <button onclick="DelRow()" class="delete-button"><span class="lets-icons--dell-duotone"></span></button>
+      <button onclick="DelCvtRow()" class="delete-button"><span class="lets-icons--dell-duotone"></span></button>
     </td>
   `;
 
@@ -204,12 +205,31 @@ const AddCvtRow = () => {
     <td><input type="text" /></td>
     <td><input type="text" /></td>
     <td>
-      <button onclick="DelRow()" class="delete-button"><span class="lets-icons--dell-duotone"></span></button>
+      <button onclick="DelCvtRow()" class="delete-button"><span class="lets-icons--dell-duotone"></span></button>
     </td>
   `;
 
   tableBody.appendChild(newRow);
 };
+
+const DelCvtRow = () => {
+  const myRow = event.target.closest('tr');
+  const cvtNum = Number(myRow.querySelector('td:nth-child(2)').innerText) - 1;
+
+  cvtFiles.splice(cvtNum, 1);
+
+  myRow.remove();
+  UpdateRowNum();
+};
+
+function UpdateRowNum() {
+  const Rows = tableCvt.querySelectorAll('tbody tr');
+
+  for (let i = 0; i < Rows.length; i++) {
+    let rowNumberCell = Rows[i].querySelectorAll('td')[1];
+    rowNumberCell.textContent = i + 1;
+  }
+}
 
 // copy contact email
 contactEmail.addEventListener('click', () => {

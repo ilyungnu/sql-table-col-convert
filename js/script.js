@@ -195,7 +195,9 @@ const LoadCvtRow = (CVS) => {
     <td><input type="text" value="${itemArry[2]}"/></td>
     <td><input type="text" value="${itemArry[3]}"/></td>
     <td>
-      <button onclick="DelCvtRow()" class="delete-button"><span class="lets-icons--dell-duotone"></span></button>
+      <button onclick="DelCvtRow()" class="delete-button">
+        <span class="lets-icons--dell-duotone"></span>
+      </button>
     </td>
   `;
 
@@ -233,7 +235,10 @@ const DelCvtRow = () => {
   myRow.remove();
   UpdateRowNum();
 
-  cvtNum == 0 ? AddCvtRow() : 0;
+  if (cvtNum == 0) {
+    const restItem = tableCvt.querySelectorAll('tbody input[type=checkbox]').length;
+    restItem == 0 ? AddCvtRow() : 0;
+  }
 };
 
 function UpdateRowNum() {

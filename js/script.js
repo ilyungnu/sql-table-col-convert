@@ -254,16 +254,19 @@ function UpdateRowNum() {
 // save content
 btnSqlSave.addEventListener('click', () => {
   const content = event.target.closest('.sql-content').querySelector('textarea').value;
-  const blob = new Blob([content], { type: 'application/sql' });
-  const url = document.createElement('a');
 
-  url.download = 'text_file.sql';
-  url.href = window.URL.createObjectURL(blob);
-  url.style.display = 'none';
+  if (content.trim() != '') {
+    const blob = new Blob([content], { type: 'application/sql' });
+    const url = document.createElement('a');
 
-  document.body.appendChild(url);
-  url.click();
-  document.body.removeChild(url);
+    url.download = 'text_file.sql';
+    url.href = window.URL.createObjectURL(blob);
+    url.style.display = 'none';
+
+    document.body.appendChild(url);
+    url.click();
+    document.body.removeChild(url);
+  }
 });
 
 // copy contact email

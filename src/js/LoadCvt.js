@@ -10,6 +10,8 @@ const {
 } = require('./Element');
 let { fileCvt, loadedFileCvt } = require('./Element');
 
+const { ChgConvertBtnState } = require('./ConvertSql');
+
 const InputCvtEvt = () => {
   const inputFiles = [...event.target.files];
 
@@ -27,6 +29,8 @@ const InputCvtEvt = () => {
     if (IsCvtContentClear()) {
       fileListCvt.querySelector('tbody tr:first-child .file-name').click();
     }
+
+    ChgConvertBtnState();
   });
 
   // reset input
@@ -128,6 +132,8 @@ const DelCvtFileRow = () => {
   // delete file
   delete fileCvt[delFileName];
   delRow.remove();
+
+  ChgConvertBtnState();
 };
 
 const AddCvtFileRow = (FILENAME, TABLE) => {
@@ -230,6 +236,7 @@ const AddCvtFile = () => {
 
     // set status
     SetCvtFileStatus(filename);
+    ChgConvertBtnState();
 
     //show file list
     if (fileListCvt.hidden) fileListCvt.hidden = false;

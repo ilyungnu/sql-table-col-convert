@@ -1,6 +1,8 @@
 const { inputSql, fileListSql, filenameSql, fileContentSql, sqlFileAdd, sqlFileEdit, sqlFileDownload } = require('./Element');
 let { fileSql, loadedFileSql } = require('./Element');
 
+const { ChgConvertBtnState } = require('./ConvertSql');
+
 const InputSqlEvt = () => {
   const inputFiles = [...event.target.files];
 
@@ -16,6 +18,8 @@ const InputSqlEvt = () => {
     if (fileListSql.hidden) fileListSql.hidden = false;
     //show first file
     if (fileContentSql.value == '') fileListSql.querySelector('tbody tr:first-child .file-name').click();
+
+    ChgConvertBtnState();
   });
 
   // reset input
@@ -59,6 +63,8 @@ const DelSqlFileRow = () => {
   // delete file
   delete fileSql[delFileName];
   delRow.remove();
+
+  ChgConvertBtnState();
 };
 
 const AddSqlFileRow = (FILENAME, TABLE) => {
@@ -116,6 +122,7 @@ const AddSqlFile = () => {
 
     // set status
     SetSqlFileStatus(filename);
+    ChgConvertBtnState();
 
     //show file list
     if (fileListSql.hidden) fileListSql.hidden = false;

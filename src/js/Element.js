@@ -27,6 +27,10 @@ export const cvtFileAdd = document.getElementById('cvtFileAdd');
 export const cvtFileEdit = document.getElementById('cvtFileEdit');
 export const cvtFileDownload = document.getElementById('cvtFileDownload');
 
+// convert button
+export const cvtSql = document.getElementById('cvtSql');
+export const cvtSqlDownload = document.getElementById('cvtSqlDownload');
+
 // error list
 export const errListSql = document.getElementById('errListSql');
 export const errListCvt = document.getElementById('errListCvt');

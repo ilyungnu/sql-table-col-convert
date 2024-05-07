@@ -150,12 +150,12 @@
 
             <!-- file load -->
             <div class="toggle-button">
-              <button class="state-disable" disabled>변환</button>
-              <button class="state-disable" disabled>다운로드</button>
+              <button id="cvtSql" class="state-disable" disabled>변환</button>
+              <button id="cvtSqlDownload" class="state-disable" disabled>다운로드</button>
             </div>
 
             <!-- file list -->
-            <table id="fileListRst" class="file-list">
+            <table id="fileListRst" class="file-list" hidden>
               <thead>
                 <tr>
                   <th><input type="checkbox" name="select_all_file_rst" /></th>

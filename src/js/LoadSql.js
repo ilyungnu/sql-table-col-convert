@@ -66,7 +66,7 @@ const AddSqlFileRow = (FILENAME, TABLE) => {
   const tBody = TABLE.querySelector('tbody');
 
   newRow.innerHTML = `
-  <td><input type="checkbox" /></td>
+  <td><input type="checkbox" name="select_file_sql"/></td>
   <td><span class="file-name">${FILENAME}</span></td>
   <td>
     <button class="delete-row-button">

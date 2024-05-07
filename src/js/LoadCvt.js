@@ -103,7 +103,7 @@ const LoadCvtContent = (FILENAME) => {
     const num = tBody.querySelectorAll('tr').length + 1;
 
     newRow.innerHTML = `
-    <td><input type="checkbox" /></td>
+    <td><input type="checkbox" name="select_file_cvt_content"/></td>
     <td>${num}</td>
     <td><input type="text" value="${itemArry[0]}"/></td>
     <td><input type="text" value="${itemArry[1]}"/></td>
@@ -135,7 +135,7 @@ const AddCvtFileRow = (FILENAME, TABLE) => {
   const tBody = TABLE.querySelector('tbody');
 
   newRow.innerHTML = `
-  <td><input type="checkbox" /></td>
+  <td><input type="checkbox" name="select_file_cvt"/></td>
   <td><span class="file-name">${FILENAME}</span></td>
   <td>
     <button class="delete-row-button">
@@ -156,12 +156,12 @@ const AddCvtContentRow = () => {
   const num = tBody.querySelectorAll('tr').length + 1;
 
   newRow.innerHTML = `
-    <td><input type="checkbox" /></td>
+    <td><input type="checkbox" name="select_file_cvt_content" /></td>
     <td>${num}</td>
-    <td><input type="text" value=""/></td>
-    <td><input type="text" value=""/></td>
-    <td><input type="text" value=""/></td>
-    <td><input type="text" value=""/></td>
+    <td><input type="text" value="" name="table_before"/></td>
+    <td><input type="text" value="" name="column_before"/></td>
+    <td><input type="text" value="" name="table_after"/></td>
+    <td><input type="text" value="" name="column_after"/></td>
     <td>
       <button class="delete-row-button">
         <span class="lets-icons--dell-duotone"></span>

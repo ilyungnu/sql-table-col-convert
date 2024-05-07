@@ -134,7 +134,7 @@
   background: var(--rich-black);
 }
 .file-content-header input {
-  width: fit-content;
+  width: 100%;
   border: none;
   background: none;
   color: var(--soft-grey);
@@ -147,6 +147,7 @@
   gap: 4px;
 }
 .file-content-buttons button {
+  width: max-content;
   display: flex;
   align-items: center;
   border: none;

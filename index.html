@@ -3,180 +3,218 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style/style.css" />
-    <title>SQL 변환기</title>
+    <title>SQL 테이블 · 컬럼 변환기</title>
   </head>
   <body>
     <!-- header: title, explanation -->
-    <header>
-      <div class="header-content">
-        <h1 class="header-title">SQL CONVERT</h1>
-        <span class="question-mark iconoir--question-mark-circle"></span>
-      </div>
+    <header class="header-content">
+      <h1 class="header-title">SQL 테이블 · 컬럼 변환기</h1>
+      <span class="iconoir--question-mark-circle"></span>
     </header>
 
     <!-- main: main contents -->
-    <main>
-      <div class="main-content">
-        <!-- 1. -->
-        <section class="section-content">
-          <h2 class="section-title">1. 변환할 SQL 입력</h2>
-          <details class="toggle" open>
-            <summary>
-              <p>변환할 SQL을 직접 입력하거나, 파일(.sql)을 선택해 SQL을 불러와주세요.</p>
-            </summary>
-            <div class="toggle-content">
-              <!-- file load -->
-              <label for="inputSql" class="label-button button-active-state">파일선택</label>
-              <input id="inputSql" type="file" accept=".sql" multiple hidden />
-              <table id="tableSqlFile" class="file-table" hidden>
-                <thead>
-                  <tr>
-                    <th><input type="checkbox" /></th>
-                    <th>파일명</th>
-                    <th><button class="delete-chkrow-button">삭제</button></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- loaded contents -->
-                </tbody>
-              </table>
+    <main class="main-content">
+      <!-- 1. -->
+      <section class="section-content">
+        <h2 class="section-title">1. 변환할 SQL 입력</h2>
+        <details class="toggle" open>
+          <summary>
+            <p>변환할 SQL을 직접 입력하거나, 파일(.sql)을 선택해 SQL을 불러와주세요.</p>
+          </summary>
+          <div class="toggle-content">
+            <!-- error message list -->
+            <ul id="errListSql" class="error-message">
+              <li class="error-level-1">오류 메세지</li>
+              <li class="error-level-2">오류 메세지</li>
+            </ul>
 
-              <div class="sql-content">
-                <div class="sql-header">
-                  <span id="filenameSql">SQL</span>
-                  <button id="btnSqlSave"><span class="material-symbols-light--download"></span></button>
-                </div>
-                <textarea id="txtareaSql"></textarea>
-              </div>
+            <!-- file load -->
+            <div class="toggle-button">
+              <label for="inputSql">파일선택</label>
+              <input type="file" id="inputSql" accept=".sql" multiple hidden />
             </div>
-          </details>
-        </section>
 
-        <section class="section-content">
-          <!-- 2. -->
-          <h2 class="section-title">2. 변환할 내용 입력</h2>
-          <details class="toggle" open>
-            <summary>
-              <p>변환할 내용을 직접 입력하거나, 파일(.csv)을 선택해 내용을 불러와주세요.</p>
-            </summary>
-            <div class="toggle-content">
-              <!-- file load -->
-              <label for="inputCvt" class="label-button button-active-state">파일선택</label>
-              <input id="inputCvt" type="file" accept=".csv" hidden />
-              <table id="tableCvtFile" class="file-table" hidden>
+            <!-- file list -->
+            <table id="fileListSql" class="file-list" hidden>
+              <thead>
+                <tr>
+                  <th><input type="checkbox" /></th>
+                  <th>파일명</th>
+                  <th><button class="delete-chkrow-button">삭제</button></th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- body content -->
+              </tbody>
+            </table>
+
+            <!-- file content -->
+            <div class="file-content">
+              <div class="file-content-header">
+                <input id="filenameSql" type="text" value="SQL" placeholder="SQL" maxlength="50" autocomplete="off" />
+                <div class="file-content-buttons">
+                  <button id="sqlFileAdd"><span class="system-uicons--plus"></span></button>
+                  <button id="sqlFileEdit"><span class="system-uicons--check"></span></button>
+                  <button id="sqlFileDownload"><span class="material-symbols-light--download"></span></button>
+                </div>
+              </div>
+              <textarea id="fileContentSql" class="file-content-textarea" spellcheck="false"></textarea>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- 2. -->
+      <section class="section-content">
+        <h2 class="section-title">2. 변환할 내용 입력</h2>
+        <details class="toggle" open>
+          <summary>
+            <p>변환할 내용을 직접 입력하거나, 파일(.csv)을 선택해 내용을 불러와주세요</p>
+          </summary>
+          <div class="toggle-content">
+            <!-- error message list -->
+            <ul id="errListCvt" class="error-message">
+              <li class="error-level-1">오류 메세지</li>
+              <li class="error-level-2">오류 메세지</li>
+            </ul>
+
+            <!-- file load -->
+            <div class="toggle-button">
+              <label for="inputCvt">파일선택</label>
+              <input type="file" id="inputCvt" accept=".csv" multiple hidden />
+            </div>
+
+            <!-- file list -->
+            <table id="fileListCvt" class="file-list" hidden>
+              <thead>
+                <tr>
+                  <th><input type="checkbox" /></th>
+                  <th>파일명</th>
+                  <th><button class="delete-chkrow-button">삭제</button></th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- body content -->
+              </tbody>
+            </table>
+
+            <!-- file content -->
+            <div class="file-content">
+              <div class="file-content-header convert-content-table">
+                <input id="filenameCvt" type="text" value="CSV" placeholder="CSV" maxlength="50" autocomplete="off" />
+                <div class="file-content-buttons">
+                  <button id="cvtContentAddRow">행추가</button>
+                  <span class="divider">|</span>
+                  <button id="cvtFileAdd"><span class="system-uicons--plus"></span></button>
+                  <button id="cvtFileEdit"><span class="system-uicons--check"></span></button>
+                  <button id="cvtFileDownload"><span class="material-symbols-light--download"></span></button>
+                </div>
+              </div>
+              <table id="fileContentCvt">
                 <thead>
                   <tr>
-                    <th><input type="checkbox" /></th>
-                    <th>파일명</th>
-                    <th><button class="delete-chkrow-button">삭제</button></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- loaded contents -->
-                </tbody>
-              </table>
-
-              <!-- convert contents -->
-              <table id="tableCvt" class="convert-table">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th></th>
+                    <th rowspan="2" colspan="2"><input type="checkbox" /></th>
                     <th colspan="2">변환 전</th>
                     <th colspan="2">변환 후</th>
+                    <th rowspan="2"><button class="delete-chkrow-button">삭제</button></th>
                   </tr>
                   <tr>
-                    <th><input type="checkbox" /></th>
-                    <th></th>
                     <th>테이블</th>
                     <th>컬럼</th>
                     <th>테이블</th>
                     <th>컬럼</th>
-                    <th><button class="delete-chkrow-button">삭제</button></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><input type="checkbox" /></td>
-                    <td>1</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
-                    <td>
-                      <button onclick="DelCvtRow()" class="delete-button">
-                        <span class="lets-icons--dell-duotone"></span>
-                      </button>
-                    </td>
-                  </tr>
+                  <!-- body content -->
                 </tbody>
               </table>
-
-              <button id="btnAddCvtRow" class="add-button">
-                <span class="lets-icons--add-duotone"></span>
-              </button>
             </div>
-          </details>
-        </section>
+          </div>
+        </details>
+      </section>
 
-        <section class="section-content">
-          <!-- 3. -->
-          <h2 class="section-title">3. 변환 및 다운로드</h2>
+      <!-- 3. -->
+      <section class="section-content">
+        <h2 class="section-title">3. 변환 및 다운로드</h2>
+        <details class="toggle">
+          <summary>
+            <p>SQL을 변환한 뒤, 변환 내용을 확인하고 다운로드해 주세요</p>
+          </summary>
+          <div class="toggle-content">
+            <!-- error message list -->
+            <ul id="errListRst" class="error-message">
+              <li class="error-level-1">오류 메세지</li>
+              <li class="error-level-2">오류 메세지</li>
+            </ul>
 
-          <details class="toggle">
-            <summary>
-              <p>SQL을 변환한 뒤, 변환 내용을 확인하고 다운로드해 주세요.</p>
-            </summary>
-            <div class="toggle-content">
-              <!-- result -->
-              <div class="double-contents-area">
-                <button id="btnCvt" class="button-disable-state" disabled>변환</button>
-                <button id="btnDownload" class="button-disable-state" disabled>다운로드</button>
-              </div>
-              <table id="tableResultFIle" class="file-table">
-                <thead>
-                  <tr>
-                    <th><input type="checkbox" /></th>
-                    <th>파일명</th>
-                    <th><button class="delete-chkrow-button">삭제</button></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- result contents -->
-                </tbody>
-              </table>
+            <!-- file load -->
+            <div class="toggle-button">
+              <button class="state-disable" disabled>변환</button>
+              <button class="state-disable" disabled>다운로드</button>
+            </div>
 
-              <div class="sql-content">
-                <div class="sql-header">
-                  <span id="filenameResult">Result</span>
+            <!-- file list -->
+            <table id="fileListRst" class="file-list">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" /></th>
+                  <th>파일명</th>
+                  <th><button class="delete-chkrow-button">삭제</button></th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- body content -->
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>파일명</td>
+                  <td>
+                    <button><span class="lets-icons--dell-duotone"></span></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>파일명</td>
+                  <td>
+                    <button><span class="lets-icons--dell-duotone"></span></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- file content -->
+            <div class="file-content">
+              <div class="file-content-header">
+                <input id="filenameRst" type="text" value="SQL" placeholder="SQL" maxlength="50" readonly autocomplete="off" />
+                <div class="file-content-buttons">
+                  <button><span class="system-uicons--plus"></span></button>
+                  <button><span class="system-uicons--check"></span></button>
                   <button><span class="material-symbols-light--download"></span></button>
                 </div>
-                <textarea id="txtareaResult"></textarea>
               </div>
+              <textarea id="fileContentRst" class="file-content-textarea" spellcheck="false" readonly></textarea>
             </div>
-          </details>
-        </section>
-
-        <section class="section-content"><button class="reset-button">전체초기화</button></section>
-      </div>
+          </div>
+        </details>
+      </section>
+      <section class="section-content"><button class="reset-button">전체초기화</button></section>
     </main>
 
     <!-- footer: developer, contact, site -->
-    <footer>
-      <div class="footer-content">
-        <p class="footer-name">neromalion</p>
-        <div class="footer-email">
-          <span>contact: </span>
-          <address id="contactEmail">neromalion@gmail.com</address>
-          <span class="guide-img-copy mdi--clipboard-outline"></span>
-        </div>
-        <div class="footer-link">
-          <a href="https://github.com/neromalion"><span class="bi--github"></span></a>
-        </div>
+    <footer class="footer-content">
+      <p class="footer-name">neromalion</p>
+      <div class="footer-email">
+        <p>contact:</p>
+        <address id="contactEmail">neromalion@gmail.com</address>
+        <span class="mdi--clipboard-outline"></span>
+      </div>
+      <div class="footer-link">
+        <a href="https://github.com/neromalion" target="_blank">
+          <span class="bi--github"></span>
+        </a>
       </div>
     </footer>
 
-    <script src="./js/script.js"></script>
+    <script src="./dist/main.js"></script>
   </body>
 </html>

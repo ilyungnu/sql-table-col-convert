@@ -1,0 +1,212 @@
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* section */
+.section-title {
+  font-size: 24px;
+  font-variant-numeric: tabular-nums;
+}
+.section-content {
+  display: flex;
+  flex-direction: column;
+}
+.section-content > *:not(.section-title) {
+  margin-left: 30px;
+}
+
+/* toggle */
+.toggle > summary {
+  margin: 10px 0;
+  padding-bottom: 10px;
+  display: flex;
+  list-style-type: none;
+}
+.toggle > summary::-webkit-details-marker {
+  display: none;
+}
+.toggle > summary > * {
+  width: 100%;
+}
+.toggle > summary::after {
+  content: '▲';
+  color: var(--mild-grey);
+  cursor: pointer;
+  transform: rotate(0);
+  transition: 0.5s;
+}
+.toggle[open] > summary::after {
+  transform: rotate(180deg);
+}
+.toggle-content {
+  margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.toggle-button {
+  display: flex;
+  gap: 10px;
+}
+.toggle-button > * {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background: var(--active-blue);
+  color: var(--soft-white);
+  text-align: center;
+}
+
+.toggle-button > .state-disable {
+  color: var(--mild-grey);
+  background: var(--soft-white);
+  border: 1px solid var(--mild-grey);
+}
+
+/* error message */
+.error-message {
+  padding: 10px 20px;
+  /* display: flex; */
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--soft-grey);
+  border-radius: 16px;
+}
+.error-message > .error-level-1 {
+  color: var(--warning-red);
+}
+.error-message > .error-level-2 {
+  color: var(--active-blue);
+}
+
+/* file list */
+.chose-file {
+  color: var(--active-blue);
+}
+.file-name {
+  cursor: pointer;
+}
+
+.file-list {
+  border-collapse: collapse;
+}
+.file-list th {
+  padding: 10px;
+  border-bottom: 1px solid black;
+  font-weight: normal;
+}
+.file-list tbody > tr:first-child td {
+  padding-top: 10px;
+}
+.file-list td {
+  padding: 4px 10px;
+}
+.file-list tr > :nth-child(1) {
+  width: 10%;
+  text-align: right;
+}
+.file-list tr > :nth-child(2) {
+  width: 80%;
+  text-align: left;
+}
+.file-list tr > :nth-child(3) {
+  width: 10%;
+  text-align: left;
+}
+.file-list button span {
+  width: 24px;
+  height: 24px;
+}
+
+/* file content */
+/* textarea */
+.file-content-header {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px 10px 0 0;
+  background: var(--rich-black);
+}
+.file-content-header input {
+  width: fit-content;
+  border: none;
+  background: none;
+  color: var(--soft-grey);
+}
+.file-content-buttons {
+  display: flex;
+  gap: 4px;
+}
+.file-content-buttons button {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  color: var(--soft-grey);
+  font-size: 12px;
+}
+.file-content-buttons span {
+  width: 20px;
+  height: 20px;
+  color: var(--soft-grey);
+}
+.file-content textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 0 0 10px 10px;
+  background: var(--hard-grey);
+  color: var(--soft-white);
+}
+
+/* table */
+.file-content-header.convert-content-table {
+  background: var(--table-green);
+}
+.file-content table {
+  white-space: nowrap;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.file-content table th,
+.file-content table td {
+  padding: 8px;
+  border: 0.1px solid var(--soft-grey);
+}
+.file-content table tr td:last-child {
+  text-align: center;
+}
+.file-content table button {
+  font-weight: bold;
+}
+.file-content table input {
+  width: 100%;
+  text-align: center;
+  border: none;
+}
+.file-content table button span {
+  width: 24px;
+  height: 24px;
+}
+.divider {
+  text-align: center;
+  color: var(--soft-grey);
+}
+
+/* reset button */
+.reset-button {
+  width: fit-content;
+  align-self: center;
+  margin-right: 30px;
+  text-decoration: underline;
+  border: none;
+  background: none;
+  color: var(--mild-grey);
+}

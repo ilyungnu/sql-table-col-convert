@@ -1,0 +1,32 @@
+.footer-content {
+  padding: 30px 0;
+}
+.footer-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+.footer-email {
+  display: flex;
+  gap: 4px;
+}
+.footer-email > address {
+  font-style: normal;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.footer-email address:hover {
+  filter: invert(40%);
+}
+.footer-email > span {
+  width: 20px;
+  height: 20px;
+}
+.footer-link {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+}
+.footer-link span {
+  width: 40px;
+  height: 40px;
+}

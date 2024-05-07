@@ -1,0 +1,78 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body > * {
+  width: 760px;
+  margin: 0 auto;
+}
+
+a {
+  color: inherit;
+}
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a:focus {
+  text-decoration: none;
+}
+a:active {
+  text-decoration: none;
+}
+
+li {
+  margin-left: 20px;
+}
+
+button,
+label {
+  cursor: pointer;
+}
+button:enabled:active,
+label[for]:active {
+  filter: invert(10%);
+}
+button:disabled {
+  cursor: auto;
+}
+
+input[type='checkbox'] {
+  cursor: pointer;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+p,
+textarea,
+button {
+  font-size: 16px;
+}
+textarea {
+  resize: none;
+}
+
+table button {
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+}

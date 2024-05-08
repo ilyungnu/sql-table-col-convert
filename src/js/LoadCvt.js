@@ -216,11 +216,8 @@ const AddCvtFile = () => {
       content += rowVal.join(',') + '\n';
     });
 
-    let filename = filenameCvt.value.trim();
-
     // set file name
-    if (filename == '') filename = 'CSV';
-    if (filename.slice(-4) != '.csv') filename += '.csv';
+    let filename = SetFileName(filenameCvt.value);
 
     if (Object.keys(fileCvt).includes(filename)) {
       const index = filename.length - 4;
@@ -253,11 +250,8 @@ const EditCvtFile = () => {
       content += rowVal.join(',') + '\n';
     });
 
-    let filename = filenameCvt.value.trim();
-
     // set file name
-    if (filename == '') filename = 'CSV';
-    if (filename.slice(-4) != '.csv') filename += '.csv';
+    let filename = SetFileName(filenameCvt.value);
 
     if (Object.keys(fileCvt).includes(filename)) {
       fileCvt[filename] = content
@@ -284,11 +278,8 @@ const DownloadCvtFile = () => {
     const blob = new Blob([content], { type: 'application/csv' });
     const url = document.createElement('a');
 
-    let filename = filenameCvt.value.trim();
-
     // set file name
-    if (filename == '') filename = 'CSV';
-    if (filename.slice(-4) != '.csv') filename += '.csv';
+    let filename = SetFileName(filenameCvt.value);
 
     url.download = filename;
     url.href = window.URL.createObjectURL(blob);
@@ -298,6 +289,15 @@ const DownloadCvtFile = () => {
     url.click();
     document.body.removeChild(url);
   }
+};
+
+const SetFileName = (STR) => {
+  let filename = STR.trim();
+
+  if (STR == '') STR = 'CSV';
+  if (!/.csv/gi.test(STR.slice(-4))) STR += '.csv';
+
+  return filename;
 };
 
 inputCvt.addEventListener('change', InputCvtEvt);

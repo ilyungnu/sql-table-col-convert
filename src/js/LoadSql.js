@@ -105,11 +105,8 @@ const AddSqlFile = () => {
 
   // add file list
   if (content.trim() != '') {
-    let filename = filenameSql.value.trim();
-
     // set file name
-    if (filename == '') filename = 'SQL';
-    if (filename.slice(-4) != '.sql') filename += '.sql';
+    let filename = SetFileName(filenameSql.value);
 
     if (Object.keys(fileSql).includes(filename)) {
       const index = filename.length - 4;
@@ -134,11 +131,8 @@ const EditSqlFile = () => {
 
   // add file list
   if (content.trim() != '') {
-    let filename = filenameSql.value.trim();
-
     // set file name
-    if (filename == '') filename = 'SQL';
-    if (filename.slice(-4) != '.sql') filename += '.sql';
+    let filename = SetFileName(filenameSql.value);
 
     if (Object.keys(fileSql).includes(filename)) {
       fileSql[filename] = content;
@@ -156,11 +150,8 @@ const DownloadSqlFile = () => {
     const blob = new Blob([content], { type: 'application/sql' });
     const url = document.createElement('a');
 
-    let filename = filenameSql.value.trim();
-
     // set file name
-    if (filename == '') filename = 'SQL';
-    if (filename.slice(-4) != '.sql') filename += '.sql';
+    let filename = SetFileName(filenameSql.value);
 
     url.download = filename;
     url.href = window.URL.createObjectURL(blob);
@@ -170,6 +161,15 @@ const DownloadSqlFile = () => {
     url.click();
     document.body.removeChild(url);
   }
+};
+
+const SetFileName = (STR) => {
+  let filename = STR.trim();
+
+  if (STR == '') STR = 'SQL';
+  if (!/.sql/gi.test(STR.slice(-4))) STR += '.sql';
+
+  return filename;
 };
 
 inputSql.addEventListener('change', InputSqlEvt);

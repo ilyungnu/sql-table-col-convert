@@ -166,8 +166,8 @@ const DownloadSqlFile = () => {
 const SetFileName = (STR) => {
   let filename = STR.trim();
 
-  if (STR == '') STR = 'SQL';
-  if (!/.sql/gi.test(STR.slice(-4))) STR += '.sql';
+  if (filename == '') filename = 'SQL';
+  if (!/.sql/gi.test(filename.slice(-4))) filename += '.sql';
 
   return filename;
 };

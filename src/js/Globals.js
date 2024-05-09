@@ -27,6 +27,9 @@ export const cvtFileAdd = document.getElementById('cvtFileAdd');
 export const cvtFileEdit = document.getElementById('cvtFileEdit');
 export const cvtFileDownload = document.getElementById('cvtFileDownload');
 
+// toggle
+export const toggleRst = document.getElementById('toggleRst');
+
 // convert button
 export const cvtSql = document.getElementById('cvtSql');
 export const cvtSqlDownload = document.getElementById('cvtSqlDownload');
@@ -42,7 +45,4 @@ export const contactEmail = document.getElementById('contactEmail');
 // files
 export let fileSql = new Object();
 export let fileCvt = new Object();
-
-// loaded file
-export let loadedFileSql = '';
-export let loadedFileCvt = '';
+export let fileRst = new Object();

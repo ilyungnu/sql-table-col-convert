@@ -1,4 +1,4 @@
-const { tableAll, fileContentCvt } = require('./Element');
+import { tableAll } from './Globals';
 
 const ToggleAll = (TABLE) => {
   const headChk = TABLE.querySelector('thead input[type=checkbox]');

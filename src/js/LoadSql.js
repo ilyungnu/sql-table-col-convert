@@ -1,5 +1,5 @@
-const { inputSql, fileListSql, filenameSql, fileContentSql, sqlFileAdd, sqlFileEdit, sqlFileDownload } = require('./Element');
-let { fileSql, loadedFileSql } = require('./Element');
+const { inputSql, fileListSql, filenameSql, fileContentSql, sqlFileAdd, sqlFileEdit, sqlFileDownload } = require('./Globals');
+let { fileSql } = require('./Globals');
 
 const { ChgConvertBtnState } = require('./ConvertSql');
 
@@ -52,8 +52,6 @@ const LoadFileSql = () => {
   // load sql to textarea
   filenameSql.value = filename;
   fileContentSql.value = fileSql[filename];
-
-  loadedFileSql = filename;
 };
 
 const DelSqlFileRow = () => {
@@ -97,7 +95,6 @@ const SetSqlFileStatus = (FILENAME) => {
 
   // set status
   filenameSql.value = FILENAME;
-  loadedFileSql = FILENAME;
 };
 
 const AddSqlFile = () => {

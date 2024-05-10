@@ -1,14 +1,5 @@
-const {
-  inputCvt,
-  fileListCvt,
-  filenameCvt,
-  fileContentCvt,
-  cvtContentAddRow,
-  cvtFileAdd,
-  cvtFileEdit,
-  cvtFileDownload,
-} = require('./Element');
-let { fileCvt, loadedFileCvt } = require('./Element');
+const { inputCvt, fileListCvt, filenameCvt, fileContentCvt, cvtContentAddRow, cvtFileAdd, cvtFileEdit, cvtFileDownload } = require('./Globals');
+let { fileCvt } = require('./Globals');
 
 const { ChgConvertBtnState } = require('./ConvertSql');
 
@@ -77,8 +68,6 @@ const LoadFileCvt = () => {
 
   filenameCvt.value = filename;
   LoadCvtContent(filename);
-
-  loadedFileCvt = filename;
 };
 
 const UpdateRowNum = () => {
@@ -203,7 +192,6 @@ const SetCvtFileStatus = (FILENAME) => {
 
   // set status
   filenameCvt.value = FILENAME;
-  loadedFileCvt = FILENAME;
 };
 
 const AddCvtFile = () => {

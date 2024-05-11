@@ -1,4 +1,5 @@
-﻿   테이블 A,토마토,tableA,tomato
-   테이블 A,딸기,tableA,barry
-   테이블 A,멜론,tableA,melon
-   테이블 A,바나나,tableA,banana
+﻿   도서,도서ID,book,book_id
+   도서,도서명,book,book_name
+   도서,작가명,book,author_name
+   작가,작가ID,author,author_id
+   작가,작가명,author,author_name

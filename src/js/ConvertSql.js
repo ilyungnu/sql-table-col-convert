@@ -1,4 +1,4 @@
-const { toggleRst, cvtSql, cvtSqlDownload, fileListRst, filenameRst, fileContentRst } = require('./Globals');
+const { toggleRst, cvtSql, cvtSqlDownload, fileListRst, filenameRst, rstFileDownload, fileContentRst } = require('./Globals');
 let { fileSql, fileCvt, fileRst } = require('./Globals');
 
 export const ChgConvertBtnState = () => {
@@ -140,7 +140,45 @@ const ConvertCvtSql = () => {
   cvtSqlDownload.disabled = false;
 };
 
-const DownloadSql = () => {};
+const DownloadRstFile = () => {
+  for (let i in fileRst) {
+    const blob = new Blob([fileRst[i]], { type: 'application/sql' });
+    const url = document.createElement('a');
+
+    // set file name
+    let filename = i;
+
+    url.download = filename;
+    url.href = window.URL.createObjectURL(blob);
+    url.style.display = 'none';
+
+    document.body.appendChild(url);
+    url.click();
+    document.body.removeChild(url);
+  }
+};
+
+const DownloadSelectRst = () => {
+  const content = fileContentRst.value;
+
+  // download
+  if (content.trim() != '') {
+    const blob = new Blob([content], { type: 'application/sql' });
+    const url = document.createElement('a');
+
+    // set file name
+    let filename = filenameRst.value;
+
+    url.download = filename;
+    url.href = window.URL.createObjectURL(blob);
+    url.style.display = 'none';
+
+    document.body.appendChild(url);
+    url.click();
+    document.body.removeChild(url);
+  }
+};
 
 cvtSql.addEventListener('click', ConvertCvtSql);
-cvtSqlDownload.addEventListener('click', DownloadSql);
+cvtSqlDownload.addEventListener('click', DownloadRstFile);
+rstFileDownload.addEventListener('click', DownloadSelectRst);

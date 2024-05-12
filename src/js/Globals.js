@@ -25,6 +25,7 @@ export const sqlFileDownload = document.getElementById('sqlFileDownload');
 export const cvtContentAddRow = document.getElementById('cvtContentAddRow');
 export const cvtFileEdit = document.getElementById('cvtFileEdit');
 export const cvtFileDownload = document.getElementById('cvtFileDownload');
+export const rstFileDownload = document.getElementById('rstFileDownload');
 
 // toggle
 export const toggleRst = document.getElementById('toggleRst');
@@ -40,6 +41,9 @@ export const errListRst = document.getElementById('errListRst');
 
 // contact
 export const contactEmail = document.getElementById('contactEmail');
+
+// reset page
+export const btnResetPage = document.getElementById('btnResetPage');
 
 // files
 export let fileSql = new Object();

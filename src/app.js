@@ -11,4 +11,5 @@ import './js/Common';
 import './js/LoadSql';
 import './js/LoadCvt';
 import './js/ConvertSql';
+import './js/ResetPage';
 import './js/Footer';

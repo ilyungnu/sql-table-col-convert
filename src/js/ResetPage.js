@@ -11,9 +11,9 @@ let { fileCvt, fileSql, fileRst } = require('./Globals');
 
 btnResetPage.addEventListener('click', () => {
   // hide file list
-  // fileListSql.hidden = true;
-  // fileListCvt.hidden = true;
-  // fileListRst.hidden = true;
+  fileListSql.hidden = true;
+  fileListCvt.hidden = true;
+  fileListRst.hidden = true;
 
   // clear file list
   fileListSql.querySelector('thead input[type=checkbox]').click();

@@ -1,4 +1,4 @@
-const { inputCvt, fileListCvt, filenameCvt, fileContentCvt, cvtContentAddRow, cvtFileAdd, cvtFileEdit, cvtFileDownload } = require('./Globals');
+const { inputCvt, fileListCvt, filenameCvt, fileContentCvt, cvtContentAddRow, cvtFileEdit, cvtFileDownload } = require('./Globals');
 let { fileCvt } = require('./Globals');
 
 const { ChgConvertBtnState } = require('./ConvertSql');
@@ -44,7 +44,7 @@ const ReadFileCvt = (FILE) => {
     READER.readAsText(FILE, 'UTF-8');
 
     READER.onload = () => {
-      AddCvtFileRow(FILE.name, fileListCvt);
+      AddCvtFileRow(FILE.name);
       fileCvt[FILE.name] = READER.result // save file
         .split('\r\n')
         .filter(Boolean)
@@ -125,9 +125,9 @@ const DelCvtFileRow = () => {
   ChgConvertBtnState();
 };
 
-const AddCvtFileRow = (FILENAME, TABLE) => {
+const AddCvtFileRow = (FILENAME) => {
   const newRow = document.createElement('tr');
-  const tBody = TABLE.querySelector('tbody');
+  const tBody = fileListCvt.querySelector('tbody');
 
   newRow.innerHTML = `
   <td><input type="checkbox" name="select_file_cvt"/></td>
@@ -194,8 +194,11 @@ const SetCvtFileStatus = (FILENAME) => {
   filenameCvt.value = FILENAME;
 };
 
-const AddCvtFile = () => {
+const EditCvtFile = () => {
   if (!IsCvtContentEmpty()) {
+    // clear file list
+    fileListCvt.querySelector('tbody tr .delete-row-button').click();
+
     let content = '';
     const rows = fileContentCvt.querySelectorAll('tbody tr');
 
@@ -207,48 +210,16 @@ const AddCvtFile = () => {
     // set file name
     let filename = SetFileName(filenameCvt.value);
 
-    if (Object.keys(fileCvt).includes(filename)) {
-      const index = filename.length - 4;
-      filename = filename.slice(0, index) + '_복사본' + filename.slice(index);
-    }
-
-    // add file
     fileCvt[filename] = content
       .split('\n')
       .filter(Boolean)
       .map((i) => i.trim());
-    AddCvtFileRow(filename, fileListCvt);
 
-    // set status
+    // set table
+    AddCvtFileRow(filename);
     SetCvtFileStatus(filename);
+
     ChgConvertBtnState();
-
-    //show file list
-    if (fileListCvt.hidden) fileListCvt.hidden = false;
-  }
-};
-
-const EditCvtFile = () => {
-  if (!IsCvtContentEmpty()) {
-    let content = '';
-    const rows = fileContentCvt.querySelectorAll('tbody tr');
-
-    rows.forEach((ROW) => {
-      const rowVal = [...ROW.querySelectorAll('input[type=text]')].map((i) => i.value);
-      content += rowVal.join(',') + '\n';
-    });
-
-    // set file name
-    let filename = SetFileName(filenameCvt.value);
-
-    if (Object.keys(fileCvt).includes(filename)) {
-      fileCvt[filename] = content
-        .split('\n')
-        .filter(Boolean)
-        .map((i) => i.trim());
-    } else {
-      AddCvtFile();
-    }
   }
 };
 
@@ -282,15 +253,14 @@ const DownloadCvtFile = () => {
 const SetFileName = (STR) => {
   let filename = STR.trim();
 
-  if (STR == '') STR = 'CSV';
-  if (!/.csv/gi.test(STR.slice(-4))) STR += '.csv';
+  if (filename == '') filename = 'CSV';
+  if (!/.csv/gi.test(filename.slice(-4))) filename += '.csv';
 
   return filename;
 };
 
 inputCvt.addEventListener('change', InputCvtEvt);
 cvtContentAddRow.addEventListener('click', AddCvtContentRow);
-cvtFileAdd.addEventListener('click', AddCvtFile);
 cvtFileEdit.addEventListener('click', EditCvtFile);
 cvtFileDownload.addEventListener('click', DownloadCvtFile);
 

@@ -23,7 +23,6 @@ export const sqlFileAdd = document.getElementById('sqlFileAdd');
 export const sqlFileEdit = document.getElementById('sqlFileEdit');
 export const sqlFileDownload = document.getElementById('sqlFileDownload');
 export const cvtContentAddRow = document.getElementById('cvtContentAddRow');
-export const cvtFileAdd = document.getElementById('cvtFileAdd');
 export const cvtFileEdit = document.getElementById('cvtFileEdit');
 export const cvtFileDownload = document.getElementById('cvtFileDownload');
 

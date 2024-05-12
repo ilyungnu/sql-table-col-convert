@@ -65,9 +65,9 @@ const DelSqlFileRow = () => {
   ChgConvertBtnState();
 };
 
-const AddSqlFileRow = (FILENAME, TABLE) => {
+const AddSqlFileRow = (FILENAME) => {
   const newRow = document.createElement('tr');
-  const tBody = TABLE.querySelector('tbody');
+  const tBody = fileListSql.querySelector('tbody');
 
   newRow.innerHTML = `
   <td><input type="checkbox" name="select_file_sql"/></td>

@@ -81,7 +81,7 @@
             <!-- file load -->
             <div class="toggle-button">
               <label for="inputCvt">파일선택</label>
-              <input type="file" id="inputCvt" accept=".csv" multiple hidden />
+              <input type="file" id="inputCvt" accept=".csv" hidden />
             </div>
 
             <!-- file list -->
@@ -105,7 +105,6 @@
                 <div class="file-content-buttons">
                   <button id="cvtContentAddRow" title="행 추가">행추가</button>
                   <span class="divider">|</span>
-                  <button id="cvtFileAdd" title="파일 추가"><span class="system-uicons--plus"></span></button>
                   <button id="cvtFileEdit" title="파일 수정"><span class="system-uicons--check"></span></button>
                   <button id="cvtFileDownload" title="파일 다운로드"><span class="material-symbols-light--download"></span></button>
                 </div>
@@ -151,7 +150,7 @@
             <!-- file load -->
             <div class="toggle-button">
               <button id="cvtSql" class="state-disable" disabled>변환</button>
-              <button id="cvtSqlDownload" class="state-disable" disabled>다운로드</button>
+              <button id="cvtSqlDownload" class="state-disable" disabled>선택 다운로드</button>
             </div>
 
             <!-- file list -->
@@ -173,9 +172,7 @@
               <div class="file-content-header">
                 <input id="filenameRst" type="text" value="SQL" placeholder="SQL" maxlength="50" readonly autocomplete="off" />
                 <div class="file-content-buttons">
-                  <!-- <button title="파일 추가"><span class="system-uicons--plus"></span></button>
-                  <button title="파일 수정"><span class="system-uicons--check"></span></button>
-                  <button title="파일 다운로드"><span class="material-symbols-light--download"></span></button> -->
+                  <button title="파일 다운로드"><span class="material-symbols-light--download"></span></button>
                 </div>
               </div>
               <textarea id="fileContentRst" class="file-content-textarea" spellcheck="false" readonly></textarea>
